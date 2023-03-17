@@ -1,12 +1,13 @@
 package com.sodastudio.jun.spotify_demo;
 
 import android.graphics.Bitmap;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.sodastudio.jun.spotify_demo.model.Music;
 import com.sodastudio.jun.spotify_demo.ui.SearchResultFragment;
@@ -24,7 +25,7 @@ public class TrackDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_track_detail);
 
-        detailMusic = getIntent().getParcelableExtra(SearchResultFragment.DETAIL_MUSIC);
+        /*detailMusic = getIntent().getParcelableExtra(SearchResultFragment.DETAIL_MUSIC);
 
         final ImageView albumImage = findViewById(R.id.detail_album_image_field);
         final TextView titleView = findViewById(R.id.detail_track_title_field);
@@ -81,6 +82,6 @@ public class TrackDetailActivity extends AppCompatActivity {
         artistView.setText(artist);
         albumView.setText(album);
 
-        Log.d(TAG, detailMusic.getTitle());
+        Log.d(TAG, detailMusic.getTitle());*/
     }
 }

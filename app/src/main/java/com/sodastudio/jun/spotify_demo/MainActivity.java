@@ -1,10 +1,11 @@
 package com.sodastudio.jun.spotify_demo;
 
 import android.app.FragmentManager;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.sodastudio.jun.spotify_demo.manager.PlaybackManager;
 import com.sodastudio.jun.spotify_demo.manager.SearchPager;
@@ -19,7 +20,7 @@ import com.spotify.sdk.android.player.SpotifyPlayer;
 import kaaes.spotify.webapi.android.SpotifyApi;
 import kaaes.spotify.webapi.android.SpotifyService;
 public class MainActivity extends AppCompatActivity
-    implements ConnectionStateCallback
+    //implements ConnectionStateCallback
 {
 
     private static final String TAG = "Spotify MainActivity";
@@ -43,51 +44,20 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.fragment_home);
 
-        FragmentManager manager = getFragmentManager();
+        /*FragmentManager manager = getFragmentManager();
         manager.beginTransaction().replace(R.id.fragment_container, new MainFragment()).commit();
 
         AUTH_TOKEN = getIntent().getStringExtra(SpotifyLoginActivity.AUTH_TOKEN);
 
-        onAuthenticationComplete(AUTH_TOKEN);
+        onAuthenticationComplete(AUTH_TOKEN);*/
 
     }
 
-    private void onAuthenticationComplete(final String auth_token) {
 
-        Log.d(TAG,"Got authentication token");
 
-        if(mPlayer == null)
-        {
-            Config playerConfig = new Config(this, auth_token, SpotifyLoginActivity.CLIENT_ID);
-
-            Spotify.getPlayer(playerConfig, this, new SpotifyPlayer.InitializationObserver() {
-                @Override
-                public void onInitialized(SpotifyPlayer spotifyPlayer) {
-                    Log.d(TAG,"-- Player initialized --");
-                    mPlayer = spotifyPlayer;
-                    mPlayer.addConnectionStateCallback(MainActivity.this);
-                    //mPlayer.addNotificationCallback(MainActivity.this);
-
-                    Log.d(TAG, "AccessToken: " + auth_token);
-
-                    // Set API
-                    setServiceAPI();
-                }
-
-                @Override
-                public void onError(Throwable throwable) {
-                    Log.e(TAG, "Could not initialize player: " + throwable.getMessage());
-                }
-            });
-        } else {
-            mPlayer.login(auth_token);
-        }
-
-    }
-
-    private void setServiceAPI(){
+    /*private void setServiceAPI(){
         Log.d(TAG, "Setting Spotify API Service");
         SpotifyApi api = new SpotifyApi();
         api.setAccessToken(AUTH_TOKEN);
@@ -185,6 +155,6 @@ public class MainActivity extends AppCompatActivity
 
         PlaybackManager playbackManager = PlaybackManager.getInstance();
         playbackManager.setSearchResultFragmentAdded(false);
-    }
+    }*/
 }
 

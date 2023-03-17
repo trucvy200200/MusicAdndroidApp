@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
-    android:background="@color/colorPrimaryDark"
+    android:background="@color/md_theme_light_onSecondaryContainer"
     android:paddingTop="5dp"
     android:paddingStart="5dp"
     android:paddingEnd="15dp"

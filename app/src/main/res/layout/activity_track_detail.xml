@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimaryDark"
+    android:background="@color/md_theme_light_onSecondaryContainer"
 
     android:orientation="vertical"
     android:gravity="center"
@@ -37,7 +37,6 @@
                 android:layout_height="20dp"
                 android:orientation="horizontal"
                 android:layout_gravity="center">
-
                 <TextView
                     android:id="@+id/detail_artist_field"
                     android:layout_width="wrap_content"
@@ -45,7 +44,7 @@
                     android:paddingStart="10dp"
                     android:paddingEnd="10dp"
                     android:textSize="12sp"
-                    android:textColor="#ffff"
+                    android:textColor="@color/orange"
                     android:textStyle="bold"
                     android:text="Maroon 5"/>
 
@@ -55,7 +54,7 @@
                     android:layout_height="30dp"
                     android:layout_marginStart="10dp"
                     android:textSize="12sp"
-                    android:textColor="#ffff"
+                    android:textColor="@color/orange"
                     android:textStyle="bold"
                     android:text="Red Pill Blues (Deluxe)"/>
 
@@ -156,8 +155,11 @@
         android:layout_height="30dp"
         android:layout_gravity="bottom"
         android:gravity="center"
-        android:text="Cancel"
+        android:text="CANCEL"
+        android:layout_marginRight="70dp"
+        android:layout_marginLeft="70dp"
         android:textAlignment="center"
+        android:background="@drawable/create_account_button"
         android:textColor="#ffff"
         android:textSize="15sp"
         android:textStyle="bold" />

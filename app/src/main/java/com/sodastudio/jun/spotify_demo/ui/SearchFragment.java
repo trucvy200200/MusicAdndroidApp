@@ -5,11 +5,6 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.view.ViewCompat;
-import android.support.v4.view.ViewPropertyAnimatorListener;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,6 +14,12 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import androidx.annotation.Nullable;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.ViewPropertyAnimatorListener;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.sodastudio.jun.spotify_demo.R;
 import com.sodastudio.jun.spotify_demo.manager.PlaybackManager;

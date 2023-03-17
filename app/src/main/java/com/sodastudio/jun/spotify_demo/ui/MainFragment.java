@@ -6,7 +6,6 @@ import android.content.Context;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -15,6 +14,8 @@ import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.TextView;
+
+import androidx.annotation.Nullable;
 
 import com.sodastudio.jun.spotify_demo.R;
 
@@ -49,21 +50,15 @@ public class MainFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_main, container, false);
 
         Button homeLayout = view.findViewById(R.id.nav_home);
-        Button browseLayout = view.findViewById(R.id.nav_browse);
         Button searchLayout = view.findViewById(R.id.nav_search);
-        Button radioLayout = view.findViewById(R.id.nav_radio);
         Button libraryLayout = view.findViewById(R.id.nav_library);
 
         homeText = view.findViewById(R.id.nav_home_text);
-        browseText = view.findViewById(R.id.nav_browse_text);
         searchText = view.findViewById(R.id.nav_search_text);
-        radioText = view.findViewById(R.id.nav_radio_text);
         libraryText = view.findViewById(R.id.nav_library_text);
 
         homeLayout.setOnClickListener(mListener);
-        browseLayout.setOnClickListener(mListener);
         searchLayout.setOnClickListener(mListener);
-        radioLayout.setOnClickListener(mListener);
         libraryLayout.setOnClickListener(mListener);
 
         //homeLayout.callOnClick();
@@ -86,11 +81,11 @@ public class MainFragment extends Fragment {
     public void onAttach(Context context) {
         super.onAttach(context);
 
-        home = getResources().getDrawable(R.drawable.ic_home_black_24dp, null);
+        /*home = getResources().getDrawable(R.drawable.ic_home_black_24dp, null);
         browse = getResources().getDrawable(R.drawable.ic_open_in_browser_black_24dp, null);
         search = getResources().getDrawable(R.drawable.ic_search_black_24dp, null);
         radio = getResources().getDrawable(R.drawable.ic_radio_black_24dp, null);
-        library = getResources().getDrawable(R.drawable.ic_library_music_black_24dp, null);
+        library = getResources().getDrawable(R.drawable.ic_library_music_black_24dp, null);*/
 
         focusMode = getResources().getColor(R.color.colorWhite, null);;
         defocusMode = getResources().getColor(R.color.colorNavIcon, null);
@@ -117,19 +112,7 @@ public class MainFragment extends Fragment {
                     prev_clicked_id = R.id.nav_home;
                     prev_view = view;
                     break;
-                case R.id.nav_browse:
-                    Log.d(TAG, "BROWSE");
 
-                    if(view.isActivated()) break;
-
-                    manager.beginTransaction().replace(R.id.fragment, new BrowseFragment()).commit();
-
-                    setFocus(R.id.nav_browse, view);
-                    setDeFocus(prev_clicked_id, prev_view);
-
-                    prev_clicked_id = R.id.nav_browse;
-                    prev_view = view;
-                    break;
                 case R.id.nav_search:
                     Log.d(TAG, "SEARCH");
 
@@ -143,19 +126,7 @@ public class MainFragment extends Fragment {
                     prev_clicked_id = R.id.nav_search;
                     prev_view = view;
                     break;
-                case R.id.nav_radio:
-                    Log.d(TAG, "RADIO");
 
-                    if(view.isActivated()) break;
-
-                    manager.beginTransaction().replace(R.id.fragment, new RadioFragment()).commit();
-
-                    setFocus(R.id.nav_radio, view);
-                    setDeFocus(prev_clicked_id, prev_view);
-
-                    prev_clicked_id = R.id.nav_radio;
-                    prev_view = view;
-                    break;
                 case R.id.nav_library:
                     Log.d(TAG, "LIBRARY");
 
@@ -183,13 +154,7 @@ public class MainFragment extends Fragment {
                 homeText.setTypeface(Typeface.DEFAULT_BOLD);
                 view.setActivated(true);
                 break;
-            case R.id.nav_browse:
-                browse.setTint(focusMode);
-                view.setBackground(browse);
-                browseText.setTextColor(focusMode);
-                browseText.setTypeface(Typeface.DEFAULT_BOLD);
-                view.setActivated(true);
-                break;
+
             case R.id.nav_search:
                 search.setTint(focusMode);
                 view.setBackground(search);
@@ -197,13 +162,7 @@ public class MainFragment extends Fragment {
                 searchText.setTypeface(Typeface.DEFAULT_BOLD);
                 view.setActivated(true);
                 break;
-            case R.id.nav_radio:
-                radio.setTint(focusMode);
-                view.setBackground(radio);
-                radioText.setTextColor(focusMode);
-                radioText.setTypeface(Typeface.DEFAULT_BOLD);
-                view.setActivated(true);
-                break;
+
             case R.id.nav_library:
                 library.setTint(focusMode);
                 view.setBackground(library);
@@ -223,13 +182,6 @@ public class MainFragment extends Fragment {
                 homeText.setTypeface(Typeface.DEFAULT);
                 view.setActivated(false);
                 break;
-            case R.id.nav_browse:
-                browse.setTint(defocusMode);
-                view.setBackground(browse);
-                browseText.setTextColor(defocusMode);
-                browseText.setTypeface(Typeface.DEFAULT);
-                view.setActivated(false);
-                break;
             case R.id.nav_search:
                 search.setTint(defocusMode);
                 view.setBackground(search);
@@ -237,13 +189,7 @@ public class MainFragment extends Fragment {
                 searchText.setTypeface(Typeface.DEFAULT);
                 view.setActivated(false);
                 break;
-            case R.id.nav_radio:
-                radio.setTint(defocusMode);
-                view.setBackground(radio);
-                radioText.setTextColor(defocusMode);
-                radioText.setTypeface(Typeface.DEFAULT);
-                view.setActivated(false);
-                break;
+
             case R.id.nav_library:
                 library.setTint(defocusMode);
                 view.setBackground(library);

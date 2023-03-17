@@ -3,15 +3,16 @@ package com.sodastudio.jun.spotify_demo.ui;
 import android.app.Fragment;
 import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.sodastudio.jun.spotify_demo.R;
 import com.sodastudio.jun.spotify_demo.manager.ListManager;
@@ -170,7 +171,7 @@ public class HomeFragment extends Fragment{
 
             album_name_view.setText(track.getName());
 
-            Picasso.with(getContext())
+            /*Picasso.with(getContext())
                     .load(track.getImg_url())
                     .transform(new Transformation() {
                         @Override
@@ -186,7 +187,7 @@ public class HomeFragment extends Fragment{
                             return track.getName();
                         }
                     })
-                    .into(album_image_field);
+                    .into(album_image_field);*/
 
         }
 
@@ -240,7 +241,7 @@ public class HomeFragment extends Fragment{
 
             artist_name_view.setText(artist.getName());
 
-            Picasso.with(getContext())
+            /*Picasso.with(getContext())
                     .load(artist.getImg_url())
                     .transform(new Transformation() {
                         @Override
@@ -258,7 +259,7 @@ public class HomeFragment extends Fragment{
                     })
                     .into(artist_image_field);
 
-
+*/
         }
     }
 
@@ -308,7 +309,7 @@ public class HomeFragment extends Fragment{
         private void bindItem(final SimplePlaylist simple){
             titleView.setText(simple.getName());
 
-            Picasso.with(getContext())
+           /* Picasso.with(getContext())
                     .load(simple.getImg_url())
                     .transform(new Transformation() {
                         @Override
@@ -324,7 +325,7 @@ public class HomeFragment extends Fragment{
                             return simple.getName();
                         }
                     })
-                    .into(imageView);
+                    .into(imageView);*/
         }
     }
 

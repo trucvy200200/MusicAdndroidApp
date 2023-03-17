@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:background="@color/colorPrimaryDark"
+    android:background="@color/md_theme_light_onSecondaryContainer"
     android:id="@+id/main_fragment"
     android:orientation="vertical"
     android:layout_height="match_parent">
@@ -27,7 +27,7 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:gravity="center"
-            android:background="@color/colorBottomNavBar"
+            android:background="@color/seed"
             android:textColor="#ffffff"
             android:text="PLAYER FIELD"/>
 
@@ -36,7 +36,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="1dp"
             android:padding="5dp"
-            android:background="@color/colorBottomNavBar"
+            android:background="@color/seed"
             android:orientation="horizontal">
 
             <LinearLayout

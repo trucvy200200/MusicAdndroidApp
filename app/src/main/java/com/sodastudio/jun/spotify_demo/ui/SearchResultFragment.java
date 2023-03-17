@@ -5,10 +5,6 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Parcelable;
-import android.support.annotation.Nullable;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +12,11 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.sodastudio.jun.spotify_demo.MainActivity;
 import com.sodastudio.jun.spotify_demo.R;
@@ -52,7 +53,7 @@ public class SearchResultFragment extends Fragment implements SpotifyPlayer.Noti
     private ImageView background_album;
 
     private RecyclerView mRecyclerView;
-    private TrackListAdapter mAdapter;
+    //private TrackListAdapter mAdapter;
 
     private SearchPager mSearchPager;
     private SearchPager.CompleteListener mSearchListener;
@@ -100,7 +101,7 @@ public class SearchResultFragment extends Fragment implements SpotifyPlayer.Noti
 
         View view = inflater.inflate(R.layout.fragment_search_result, container, false);
 
-        playbackManager = PlaybackManager.getInstance();
+        /*playbackManager = PlaybackManager.getInstance();
         state = playbackManager.getState();
 
         layoutManager = new LinearLayoutManager(getActivity());
@@ -132,7 +133,7 @@ public class SearchResultFragment extends Fragment implements SpotifyPlayer.Noti
             queryData();
         } else {
             updateView();
-        }
+        }*/
 
         return view;
     }
@@ -182,7 +183,7 @@ public class SearchResultFragment extends Fragment implements SpotifyPlayer.Noti
 
     private void updateView(){
 
-        List<Music> mList = listManager.getTrackLists();
+        /*List<Music> mList = listManager.getTrackLists();
 
         if(mList.size() == 0) return;
 
@@ -198,7 +199,7 @@ public class SearchResultFragment extends Fragment implements SpotifyPlayer.Noti
         mArtistListener = new SearchPager.ArtistListener() {
             @Override
             public void onComplete(String img_url) {
-                Picasso.with(getContext())
+                /*Picasso.with(getContext())
                         .load(img_url)
                         .transform(new Transformation() {
                             @Override
@@ -224,14 +225,14 @@ public class SearchResultFragment extends Fragment implements SpotifyPlayer.Noti
 
             }
         };
-        mSearchPager.getArtist(mList.get(0).getArtist_id(), mArtistListener);
+        mSearchPager.getArtist(mList.get(0).getArtist_id(), mArtistListener);*/
     }
 
 
     @Override
     public void onPlaybackEvent(PlayerEvent playerEvent) {
 
-        if(!playerEvent.name().contains("Metadata"))
+        /*if(!playerEvent.name().contains("Metadata"))
             Log.d(TAG, "Playback event received: " + playerEvent.name());
 
         switch (playerEvent.name()) {
@@ -263,7 +264,7 @@ public class SearchResultFragment extends Fragment implements SpotifyPlayer.Noti
 
             default:
                 break;
-        }
+        }*/
     }
 
     @Override
@@ -334,7 +335,7 @@ public class SearchResultFragment extends Fragment implements SpotifyPlayer.Noti
                     ListManager.getInstance().setCurrent_playing_title(music.getTitle());
                     ListManager.getInstance().setCurrent_playing_album(music.getAlbum());
 
-                    mAdapter.notifyDataSetChanged();
+                    //mAdapter.notifyDataSetChanged();
                 }
             });
         }

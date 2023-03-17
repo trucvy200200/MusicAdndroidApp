@@ -1,141 +1,144 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/colorPrimaryDark"
-    android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
+
+    <com.google.android.material.appbar.AppBarLayout
+        app:elevation="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:textSize="15sp"
-        android:textStyle="bold"
-        android:textColor="@color/colorWhite"
-        android:textAlignment="center"
-        android:background="@color/colorPrimaryDark"
-        android:alpha="0.8"
-        android:text="Home"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-    <android.support.v4.widget.NestedScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
-
-        <LinearLayout
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:background="@color/seed"
+            android:padding="10dp"
+            android:text="Home"
+            android:textAlignment="center"
+            android:textColor="@color/colorWhite"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="40dp"
+        android:background="@color/md_theme_light_onSecondaryContainer"
+        android:orientation="vertical">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="5dp"
-                android:padding="5dp"
+                android:layout_height="wrap_content"
                 android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:layout_height="match_parent"
+                    android:layout_margin="5dp"
+                    android:orientation="vertical"
+                    android:padding="5dp">
 
-                    <TextView
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textAlignment="center"
-                        android:textColor="@color/colorWhite"
-                        android:textStyle="bold"
-                        android:textSize="18sp"
-                        android:padding="1dp"
-                        android:text="Made For You"/>
+                        android:orientation="vertical">
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textAlignment="center"
-                        android:textColor="@color/colorNavIcon"
-                        android:textSize="12sp"
-                        android:padding="1dp"
-                        android:text="Get better recommendations the more you listen"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="1dp"
+                            android:text="Made For You"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
 
-                    <android.support.v7.widget.RecyclerView
-                        android:id="@+id/made_for_you_RecyclerView"
-                        android:layout_margin="5dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/made_for_you_RecyclerView"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp" />
+                    </LinearLayout>
+
                 </LinearLayout>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="5dp"
-                android:padding="5dp"
-                android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:layout_height="match_parent"
+                    android:layout_margin="5dp"
+                    android:orientation="vertical"
+                    android:padding="5dp">
 
-                    <TextView
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textAlignment="center"
-                        android:textColor="@color/colorWhite"
-                        android:textStyle="bold"
-                        android:textSize="18sp"
-                        android:padding="1dp"
-                        android:text="Top Artists"/>
+                        android:orientation="vertical">
 
-                    <android.support.v7.widget.RecyclerView
-                        android:id="@+id/top_artist_RecyclerView"
-                        android:layout_margin="5dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="1dp"
+                            android:text="Top Artists"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/top_artist_RecyclerView"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp" />
+                    </LinearLayout>
+
                 </LinearLayout>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="5dp"
-                android:padding="5dp"
-                android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:layout_height="match_parent"
+                    android:layout_margin="5dp"
+                    android:orientation="vertical"
+                    android:padding="5dp">
 
-                    <TextView
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textAlignment="center"
-                        android:textColor="@color/colorWhite"
-                        android:textStyle="bold"
-                        android:textSize="18sp"
-                        android:padding="1dp"
-                        android:text="Top Tracks"/>
+                        android:orientation="vertical">
 
-                    <android.support.v7.widget.RecyclerView
-                        android:id="@+id/top_tracks_RecyclerView"
-                        android:layout_margin="5dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="1dp"
+                            android:text="Top Tracks"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/top_tracks_RecyclerView"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp" />
+                    </LinearLayout>
+
                 </LinearLayout>
 
+
             </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
 
-
-
-        </LinearLayout>
-    </android.support.v4.widget.NestedScrollView>
-
-
-
-</LinearLayout>
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
