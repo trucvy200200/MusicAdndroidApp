@@ -23,6 +23,7 @@
             android:orientation="vertical">
 
             <TextView
+                android:elevation="20dp"
                 android:id="@+id/detail_track_title_field"
                 android:layout_width="match_parent"
                 android:layout_height="25dp"
@@ -71,6 +72,7 @@
             android:orientation="horizontal">
 
             <ImageView
+                android:elevation="10dp"
                 android:layout_width="20dp"
                 android:layout_height="match_parent"
                 android:src="@drawable/ic_add_black_24dp"/>
@@ -149,7 +151,8 @@
                 android:text="View Album"/>
         </LinearLayout>
 
-    <TextView
+    <Button
+        android:elevation="20dp"
         android:id="@+id/detail_cancel_button"
         android:layout_width="match_parent"
         android:layout_height="30dp"

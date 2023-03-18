@@ -2,23 +2,31 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/colorPrimaryDark"
+    android:background="@color/md_theme_light_onSecondaryContainer"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:textSize="15sp"
-        android:textStyle="bold"
-        android:textColor="@color/colorWhite"
-        android:textAlignment="center"
-        android:background="@color/colorPrimaryDark"
-        android:alpha="0.8"
-        android:text="Your Library"/>
+        android:layout_height="100dp"
+        android:orientation="horizontal">
+        <TextView
+            android:paddingTop="30dp"
+            android:textAlignment="center"
+            android:textColor="@color/colorWhite"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            android:text="Library"
+            android:layout_marginBottom="30dp"
+            android:id="@+id/view"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:background="@drawable/bg_view"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
+    </LinearLayout>
 
 
 </LinearLayout>

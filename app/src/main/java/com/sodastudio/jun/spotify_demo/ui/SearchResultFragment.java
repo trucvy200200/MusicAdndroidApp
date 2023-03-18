@@ -414,14 +414,14 @@ public class SearchResultFragment extends Fragment implements SpotifyPlayer.Noti
         super.onPause();
         Log.d(TAG, "onPause");
 
-        state = layoutManager.onSaveInstanceState();
+       /* state = layoutManager.onSaveInstanceState();
 
         playbackManager = PlaybackManager.getInstance();
         playbackManager.setState(state);
 
 
         Fragment fragment = getFragmentManager().findFragmentByTag("SearchFragment");
-        ((SearchFragment)fragment).refresh();
+        ((SearchFragment)fragment).refresh();*/
     }
 
     @Override

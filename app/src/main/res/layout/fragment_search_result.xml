@@ -1,29 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout
+<androidx.coordinatorlayout.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <android.support.design.widget.AppBarLayout
+    <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout"
+        android:background="@color/md_theme_light_onSecondaryContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
-        <android.support.design.widget.CollapsingToolbarLayout
+        <com.google.android.material.appbar.CollapsingToolbarLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
-            app:contentScrim="@color/colorPrimary"
+            app:contentScrim="@color/md_theme_light_onSecondaryContainer"
             app:titleEnabled="false">
 
             <de.hdodenhof.circleimageview.CircleImageView
-                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:src="@drawable/ic_launcher_background"
                 android:id="@+id/background_album_field"
                 android:layout_gravity="center"
+                android:layout_margin="60dp"
                 android:layout_width="150dp"
-                android:layout_height="wrap_content"
+                android:layout_height="150dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="20dp"
                 android:padding="10dp"
@@ -32,40 +34,59 @@
                 android:scaleType="centerCrop"
                 app:civ_border_color="#FF000000"/>
 
-            <android.support.v7.widget.Toolbar
+            <androidx.appcompat.widget.Toolbar
+                android:background="@color/md_theme_light_onSecondaryContainer"
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 app:layout_collapseMode="pin"
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-                app:title=""/>
+                />
+            <LinearLayout
+                android:paddingTop="2dp"
+                android:paddingLeft="25dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Maroon 5"
+                android:textSize="30dp"
+                android:textStyle="bold"
+                android:layout_marginLeft="40dp" />
 
-        </android.support.design.widget.CollapsingToolbarLayout>
-    </android.support.design.widget.AppBarLayout>
+            </LinearLayout>
+            <ImageButton
+                android:id="@+id/imgbutton_back"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/ic_arrow_back_white_24dp"
+                android:layout_width="40dp"
+                android:layout_height="30dp"
+                />
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
 
-    <android.support.v4.widget.NestedScrollView
+    <androidx.core.widget.NestedScrollView
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/colorPrimaryDark"
-        android:paddingTop="32dp"
+        android:layout_height="715dp"
+        android:background="@color/md_theme_light_onSecondaryContainer"
         android:clipToPadding="false"
+        android:paddingTop="32dp"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="5dp"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:padding="5dp">
 
-            <android.support.v7.widget.RecyclerView
+            <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/track_list_recycler_view"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
-            </android.support.v7.widget.RecyclerView>
-
+                android:layout_height="match_parent"></androidx.recyclerview.widget.RecyclerView>
         </LinearLayout>
-    </android.support.v4.widget.NestedScrollView>
+    </androidx.core.widget.NestedScrollView>
 
     <iammert.com.view.scalinglib.ScalingLayout
         android:id="@+id/scalingLayout"
@@ -77,14 +98,14 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/colorAccent"
+            android:layout_height="wrap_content"
             android:paddingLeft="16dp"
             android:paddingRight="16dp"
             android:gravity="center"
             android:orientation="horizontal">
 
             <RelativeLayout
+                android:background="@drawable/create_account_button"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -109,4 +130,4 @@
 
     </iammert.com.view.scalinglib.ScalingLayout>
 
-</android.support.design.widget.CoordinatorLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

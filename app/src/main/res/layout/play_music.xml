@@ -6,11 +6,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/md_theme_light_onSecondaryContainer">
-    <android.support.v7.widget.Toolbar
+    <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar_PlayMusic"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize">
-    </android.support.v7.widget.Toolbar>
+        <ImageButton
+            android:id="@+id/imgbutton_back"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/ic_arrow_back_white_24dp"
+            android:layout_width="40dp"
+            android:layout_height="30dp"
+            />
+    </androidx.appcompat.widget.Toolbar>
 
     <RelativeLayout
         android:layout_marginBottom="50dp"

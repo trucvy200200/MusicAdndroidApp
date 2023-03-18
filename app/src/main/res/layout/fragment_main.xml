@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/md_theme_light_onSecondaryContainer"
     android:id="@+id/main_fragment"
     android:orientation="vertical"
@@ -31,21 +32,24 @@
             android:textColor="#ffffff"
             android:text="PLAYER FIELD"/>
 
-        <LinearLayout
+        <GridLayout
+            android:rowCount="1"
+            android:columnCount="3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="1dp"
-            android:padding="5dp"
-            android:background="@color/seed"
             android:orientation="horizontal">
-
+            <androidx.cardview.widget.CardView
+                android:backgroundTint="@color/seed"
+                android:layout_columnWeight="1"
+                app:cardElevation="12dp"
+                android:layout_width="100dp"
+                android:layout_height="50dp">
             <LinearLayout
-                android:layout_width="50dp"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:orientation="vertical"
-                android:layout_weight="1">
-
+                android:orientation="vertical">
                 <Button
                     android:id="@+id/nav_home"
                     android:layout_width="30dp"
@@ -63,9 +67,15 @@
                     android:layout_marginTop="-4dp"
                     android:text="Home"/>
             </LinearLayout>
-
+            </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                android:backgroundTint="@color/seed"
+                android:layout_columnWeight="2"
+                app:cardElevation="12dp"
+                android:layout_width="100dp"
+                android:layout_height="50dp">
             <LinearLayout
-                android:layout_width="50dp"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
                 android:orientation="vertical"
@@ -88,9 +98,15 @@
                     android:layout_marginTop="-4dp"
                     android:text="Search"/>
             </LinearLayout>
-
+            </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                android:backgroundTint="@color/seed"
+                android:layout_columnWeight="3"
+                app:cardElevation="12dp"
+                android:layout_width="100dp"
+                android:layout_height="50dp">
             <LinearLayout
-                android:layout_width="50dp"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
                 android:orientation="vertical"
@@ -113,11 +129,10 @@
                     android:layout_marginTop="-4dp"
                     android:text="Your Library"/>
             </LinearLayout>
+            </androidx.cardview.widget.CardView>
+        </GridLayout>
 
 
-
-
-        </LinearLayout>
 
 
     </LinearLayout>

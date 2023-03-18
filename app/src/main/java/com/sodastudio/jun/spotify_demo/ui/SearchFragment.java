@@ -36,7 +36,7 @@ import iammert.com.view.scalinglib.State;
  * Created by jun on 12/28/17.
  */
 
-public class SearchFragment extends Fragment{
+public class SearchFragment extends Fragment {
 
     private static final String TAG = "Spotify SearchFragment";
 
@@ -44,15 +44,15 @@ public class SearchFragment extends Fragment{
     private EditText editTextSearch;
     private ScalingLayout scalingLayout;
     private RecyclerView searchListView;
-    private ArtistListAdapter mAdapter;
+    //private ArtistListAdapter mAdapter;
 
     FragmentManager fragmentManager;
 
     @SuppressLint("ResourceType")
-    public static SearchFragment getFragmentInstance(FragmentManager fm, String tag){
-        SearchFragment fragment = (SearchFragment)fm.findFragmentByTag(tag);
+    public static SearchFragment getFragmentInstance(FragmentManager fm, String tag) {
+        SearchFragment fragment = (SearchFragment) fm.findFragmentByTag(tag);
 
-        if(fragment == null){
+        if (fragment == null) {
             fragment = new SearchFragment();
 
             FragmentTransaction ft = fm.beginTransaction();
@@ -65,8 +65,8 @@ public class SearchFragment extends Fragment{
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
-
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
+}
+    /*public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
 
         // check if the previous state is SearchResultFragment
         PlaybackManager manager = PlaybackManager.getInstance();
@@ -81,8 +81,8 @@ public class SearchFragment extends Fragment{
 
         final View view = inflater.inflate(R.layout.fragment_search, container, false);
 
-        textViewSearch = view.findViewById(R.id.textViewSearch);
-        final RelativeLayout searchLayout = view.findViewById(R.id.searchLayout);
+        textViewSearch = view.findViewById(R.id.editTextSearch);
+
         final ImageButton searchButton = view.findViewById(R.id.search_text_button);
 
         editTextSearch = view.findViewById(R.id.editTextSearch);
@@ -115,10 +115,10 @@ public class SearchFragment extends Fragment{
 
                     }
                 }).start();
-            }
+            }*/
 
-            @Override
-            public void onExpanded() {
+            /*@Override
+            public void onExpand() {
                 ViewCompat.animate(textViewSearch).alpha(0).setDuration(200).start();
                 ViewCompat.animate(searchLayout).alpha(1).setDuration(200).setListener(new ViewPropertyAnimatorListener() {
                     @Override
@@ -197,7 +197,7 @@ public class SearchFragment extends Fragment{
                     break;
             }
         }
-    };
+    }
 
     public void refresh(){
         mAdapter.notifyDataSetChanged();
@@ -251,10 +251,10 @@ public class SearchFragment extends Fragment{
         @Override
         public int getItemCount() {
             return artistSearchList.size();
-        }
-    }
+        }*/
+  /*  }
 }
-
+*/
 
 
 

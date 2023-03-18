@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.fragment_home);
+        setContentView(R.layout.fragment_search_result);
 
         /*FragmentManager manager = getFragmentManager();
         manager.beginTransaction().replace(R.id.fragment_container, new MainFragment()).commit();

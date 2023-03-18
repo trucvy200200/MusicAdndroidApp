@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:id="@+id/rootLayout"
-    android:background="@color/colorPrimaryDark"
+    android:background="@color/md_theme_light_onSecondaryContainer"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -20,24 +20,16 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/colorGrayLight">
+            android:background="@color/colorAccentPressed">
 
-            <RelativeLayout
-                android:id="@+id/searchLayout"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="16dp"
-                android:layout_centerVertical="true"
-                android:visibility="invisible">
-
-                <ImageButton
+                <ImageView
                     android:id="@+id/search_text_button"
-                    android:layout_width="30dp"
+                    android:layout_width="40dp"
                     android:layout_height="30dp"
                     android:layout_centerVertical="true"
-                    android:background="@drawable/ic_search_black_24dp" />
-
+                    android:background="@drawable/ic_search" />
                 <EditText
+                    android:hint="Search"
                     android:id="@+id/editTextSearch"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -48,21 +40,6 @@
                     android:textColor="#ffffff"/>
 
             </RelativeLayout>
-
-
-            <TextView
-                android:id="@+id/textViewSearch"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:hint="Search"
-                android:textSize="12sp"
-                android:textColorHint="#ffffff"
-                android:layout_centerInParent="true"
-                android:textColor="#ffffff"
-                android:textStyle="bold" />
-
-
-        </RelativeLayout>
 
     </iammert.com.view.scalinglib.ScalingLayout>
 
@@ -76,10 +53,10 @@
         android:textStyle="bold"
         android:textAlignment="center"/>
 
-    <android.support.v7.widget.RecyclerView
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/Artist_search_list"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-    </android.support.v7.widget.RecyclerView>
+        android:layout_height="wrap_content"
+    />
 
 </LinearLayout>
