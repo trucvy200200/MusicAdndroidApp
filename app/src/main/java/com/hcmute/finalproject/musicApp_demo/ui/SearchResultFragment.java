@@ -1,8 +1,7 @@
-package com.sodastudio.jun.spotify_demo.ui;
+package com.hcmute.finalproject.musicApp_demo.ui;
 
 import android.app.Fragment;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.util.Log;
@@ -18,21 +17,17 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.sodastudio.jun.spotify_demo.MainActivity;
-import com.sodastudio.jun.spotify_demo.R;
-import com.sodastudio.jun.spotify_demo.TrackDetailActivity;
-import com.sodastudio.jun.spotify_demo.manager.PlaybackManager;
-import com.sodastudio.jun.spotify_demo.manager.SearchPager;
-import com.sodastudio.jun.spotify_demo.manager.ListManager;
-import com.sodastudio.jun.spotify_demo.model.ArtistSearch;
-import com.sodastudio.jun.spotify_demo.model.Music;
+import com.hcmute.finalproject.musicApp_demo.MainActivity;
+import com.hcmute.finalproject.musicApp_demo.R;
+import com.hcmute.finalproject.musicApp_demo.TrackDetailActivity;
+import com.hcmute.finalproject.musicApp_demo.manager.PlaybackManager;
+import com.hcmute.finalproject.musicApp_demo.manager.SearchPager;
+import com.hcmute.finalproject.musicApp_demo.manager.ListManager;
+import com.hcmute.finalproject.musicApp_demo.model.Music;
 import com.spotify.sdk.android.player.Error;
 import com.spotify.sdk.android.player.PlayerEvent;
 import com.spotify.sdk.android.player.SpotifyPlayer;
-import com.squareup.picasso.Picasso;
-import com.squareup.picasso.Transformation;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import kaaes.spotify.webapi.android.models.Track;

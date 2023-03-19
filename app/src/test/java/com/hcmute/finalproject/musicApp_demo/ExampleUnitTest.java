@@ -1,4 +1,4 @@
-package com.sodastudio.jun.spotify_demo;
+package com.hcmute.finalproject.musicApp_demo;
 
 import org.junit.Test;
 

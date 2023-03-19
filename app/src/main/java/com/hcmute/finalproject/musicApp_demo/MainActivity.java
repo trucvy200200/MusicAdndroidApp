@@ -1,23 +1,13 @@
-package com.sodastudio.jun.spotify_demo;
+package com.hcmute.finalproject.musicApp_demo;
 
-import android.app.FragmentManager;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.sodastudio.jun.spotify_demo.manager.PlaybackManager;
-import com.sodastudio.jun.spotify_demo.manager.SearchPager;
-import com.sodastudio.jun.spotify_demo.ui.MainFragment;
-import com.spotify.sdk.android.player.Config;
-import com.spotify.sdk.android.player.ConnectionStateCallback;
-import com.spotify.sdk.android.player.Error;
 import com.spotify.sdk.android.player.PlaybackState;
-import com.spotify.sdk.android.player.Spotify;
 import com.spotify.sdk.android.player.SpotifyPlayer;
 
-import kaaes.spotify.webapi.android.SpotifyApi;
 import kaaes.spotify.webapi.android.SpotifyService;
 public class MainActivity extends AppCompatActivity
     //implements ConnectionStateCallback
@@ -54,8 +44,6 @@ public class MainActivity extends AppCompatActivity
         onAuthenticationComplete(AUTH_TOKEN);*/
 
     }
-
-
 
     /*private void setServiceAPI(){
         Log.d(TAG, "Setting Spotify API Service");

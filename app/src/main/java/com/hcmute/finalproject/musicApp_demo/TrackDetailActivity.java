@@ -1,18 +1,10 @@
-package com.sodastudio.jun.spotify_demo;
+package com.hcmute.finalproject.musicApp_demo;
 
-import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.sodastudio.jun.spotify_demo.model.Music;
-import com.sodastudio.jun.spotify_demo.ui.SearchResultFragment;
-import com.squareup.picasso.Picasso;
-import com.squareup.picasso.Transformation;
+import com.hcmute.finalproject.musicApp_demo.model.Music;
 
 public class TrackDetailActivity extends AppCompatActivity {
 

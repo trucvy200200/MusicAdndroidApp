@@ -1,36 +1,19 @@
-package com.sodastudio.jun.spotify_demo.ui;
+package com.hcmute.finalproject.musicApp_demo.ui;
 
 import android.annotation.SuppressLint;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.ViewPropertyAnimatorListener;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.sodastudio.jun.spotify_demo.R;
-import com.sodastudio.jun.spotify_demo.manager.PlaybackManager;
-import com.sodastudio.jun.spotify_demo.manager.ListManager;
-import com.sodastudio.jun.spotify_demo.model.ArtistSearch;
-
-import java.util.List;
+import com.hcmute.finalproject.musicApp_demo.R;
 
 import iammert.com.view.scalinglib.ScalingLayout;
-import iammert.com.view.scalinglib.ScalingLayoutListener;
-import iammert.com.view.scalinglib.State;
 
 /**
  * Created by jun on 12/28/17.

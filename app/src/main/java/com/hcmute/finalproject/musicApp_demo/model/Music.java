@@ -1,10 +1,7 @@
-package com.sodastudio.jun.spotify_demo.model;
+package com.hcmute.finalproject.musicApp_demo.model;
 
-import android.net.Uri;
 import android.os.Parcel;
 import android.os.Parcelable;
-
-import java.net.URL;
 
 /**
  * Created by jun on 12/29/17.

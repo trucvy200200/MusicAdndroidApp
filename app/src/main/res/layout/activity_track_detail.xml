@@ -8,7 +8,7 @@
 
     android:orientation="vertical"
     android:gravity="center"
-    tools:context="com.sodastudio.jun.spotify_demo.TrackDetailActivity">
+    tools:context="com.hcmute.finalproject.musicApp_demo.TrackDetailActivity">
 
         <ImageView
             android:id="@+id/detail_album_image_field"

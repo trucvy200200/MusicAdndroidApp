@@ -1,7 +1,6 @@
-package com.sodastudio.jun.spotify_demo.ui;
+package com.hcmute.finalproject.musicApp_demo.ui;
 
 import android.app.Fragment;
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -14,19 +13,15 @@ import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.sodastudio.jun.spotify_demo.R;
-import com.sodastudio.jun.spotify_demo.manager.ListManager;
-import com.sodastudio.jun.spotify_demo.manager.SearchPager;
-import com.sodastudio.jun.spotify_demo.model.SimplePlaylist;
-import com.sodastudio.jun.spotify_demo.model.TopArtist;
-import com.sodastudio.jun.spotify_demo.model.TopTrack;
-import com.squareup.picasso.Picasso;
-import com.squareup.picasso.Transformation;
+import com.hcmute.finalproject.musicApp_demo.R;
+import com.hcmute.finalproject.musicApp_demo.manager.ListManager;
+import com.hcmute.finalproject.musicApp_demo.manager.SearchPager;
+import com.hcmute.finalproject.musicApp_demo.model.SimplePlaylist;
+import com.hcmute.finalproject.musicApp_demo.model.TopArtist;
+import com.hcmute.finalproject.musicApp_demo.model.TopTrack;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import kaaes.spotify.webapi.android.models.PlaylistSimple;
 
 /**
  * Created by jun on 12/28/17.

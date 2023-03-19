@@ -1,8 +1,8 @@
-package com.sodastudio.jun.spotify_demo.manager;
+package com.hcmute.finalproject.musicApp_demo.manager;
 
 import android.os.Parcelable;
 
-import com.sodastudio.jun.spotify_demo.model.Music;
+import com.hcmute.finalproject.musicApp_demo.model.Music;
 
 /**
  * Created by jun on 12/31/17.

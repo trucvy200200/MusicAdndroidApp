@@ -1,4 +1,4 @@
-package com.sodastudio.jun.spotify_demo.ui;
+package com.hcmute.finalproject.musicApp_demo.ui;
 
 import android.app.Fragment;
 import android.os.Bundle;
@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 
 import androidx.annotation.Nullable;
 
-import com.sodastudio.jun.spotify_demo.R;
+import com.hcmute.finalproject.musicApp_demo.R;
 
 /**
  * Created by jun on 12/28/17.

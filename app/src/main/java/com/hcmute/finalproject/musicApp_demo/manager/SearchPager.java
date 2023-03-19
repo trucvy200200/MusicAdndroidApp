@@ -1,13 +1,13 @@
-package com.sodastudio.jun.spotify_demo.manager;
+package com.hcmute.finalproject.musicApp_demo.manager;
 
 import android.content.Context;
 import android.util.Log;
 
-import com.sodastudio.jun.spotify_demo.MainActivity;
-import com.sodastudio.jun.spotify_demo.model.AlbumNew;
-import com.sodastudio.jun.spotify_demo.model.SimplePlaylist;
-import com.sodastudio.jun.spotify_demo.model.TopArtist;
-import com.sodastudio.jun.spotify_demo.model.TopTrack;
+import com.hcmute.finalproject.musicApp_demo.MainActivity;
+import com.hcmute.finalproject.musicApp_demo.model.AlbumNew;
+import com.hcmute.finalproject.musicApp_demo.model.SimplePlaylist;
+import com.hcmute.finalproject.musicApp_demo.model.TopArtist;
+import com.hcmute.finalproject.musicApp_demo.model.TopTrack;
 
 import java.util.ArrayList;
 import java.util.HashMap;

@@ -1,4 +1,4 @@
-package com.sodastudio.jun.spotify_demo.model;
+package com.hcmute.finalproject.musicApp_demo.model;
 
 import android.graphics.Bitmap;
 
