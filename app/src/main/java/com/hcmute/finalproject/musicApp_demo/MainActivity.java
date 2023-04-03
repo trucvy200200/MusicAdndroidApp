@@ -1,10 +1,22 @@
 package com.hcmute.finalproject.musicApp_demo;
 
+import android.Manifest;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
+import androidx.core.content.ContextCompat;
+import androidx.viewpager2.widget.ViewPager2;
 
+import com.google.android.material.tabs.TabLayout;
 import com.spotify.sdk.android.player.PlaybackState;
 import com.spotify.sdk.android.player.SpotifyPlayer;
 
@@ -14,28 +26,48 @@ public class MainActivity extends AppCompatActivity
 {
 
     private static final String TAG = "Spotify MainActivity";
-
-    //  _____ _      _     _
-    // |  ___(_) ___| | __| |___
-    // | |_  | |/ _ \ |/ _` / __|
-    // |  _| | |  __/ | (_| \__ \
-    // |_|   |_|\___|_|\__,_|___/
-    //
-
     public static SpotifyPlayer mPlayer;
     public static PlaybackState mCurrentPlaybackState;
-
     private Toast mToast;
-
     private String AUTH_TOKEN;
-
     public static SpotifyService spotifyService;
+
+    TabLayout tabLayout;
+    ViewPager2 viewPager2;
+    ViewPagerAdapter viewPagerAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.fragment_search_result);
+        setContentView(R.layout.fragment_main);
 
+        tabLayout=findViewById(R.id.tab_layout);
+        viewPager2=findViewById(R.id.view_pager);
+        viewPagerAdapter=new ViewPagerAdapter(this);
+        viewPager2.setAdapter(viewPagerAdapter);
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                viewPager2.setCurrentItem(tab.getPosition());
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
+        viewPager2.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+            @Override
+            public void onPageSelected(int position) {
+                super.onPageSelected(position);
+                tabLayout.getTabAt(position).select();
+            }
+        });;
         /*FragmentManager manager = getFragmentManager();
         manager.beginTransaction().replace(R.id.fragment_container, new MainFragment()).commit();
 
@@ -45,104 +77,6 @@ public class MainActivity extends AppCompatActivity
 
     }
 
-    /*private void setServiceAPI(){
-        Log.d(TAG, "Setting Spotify API Service");
-        SpotifyApi api = new SpotifyApi();
-        api.setAccessToken(AUTH_TOKEN);
 
-        spotifyService = api.getService();
-    }
-
-    //  _   _ ___   _____                 _
-    // | | | |_ _| | ____|_   _____ _ __ | |_ ___
-    // | | | || |  |  _| \ \ / / _ \ '_ \| __/ __|
-    // | |_| || |  | |___ \ V /  __/ | | | |_\__ \
-    //  \___/|___| |_____| \_/ \___|_| |_|\__|___/
-    //
-
-
-    private boolean isLoggedIn() {
-        return mPlayer != null && mPlayer.isLoggedIn();
-    }
-
-
-    private void showToast(String text) {
-        if (mToast != null) {
-            mToast.cancel();
-        }
-        mToast = Toast.makeText(this, text, Toast.LENGTH_SHORT);
-        mToast.show();
-    }
-
-    //   ____      _ _ _                _      __  __      _   _               _
-    //  / ___|__ _| | | |__   __ _  ___| | __ |  \/  | ___| |_| |__   ___   __| |___
-    // | |   / _` | | | '_ \ / _` |/ __| |/ / | |\/| |/ _ \ __| '_ \ / _ \ / _` / __|
-    // | |__| (_| | | | |_) | (_| | (__|   <  | |  | |  __/ |_| | | | (_) | (_| \__ \
-    //  \____\__,_|_|_|_.__/ \__,_|\___|_|\_\ |_|  |_|\___|\__|_| |_|\___/ \__,_|___/
-    //
-
-    @Override
-    public void onLoggedIn() {
-        Log.d(TAG, "User logged in");
-        //showToast("Login Success!");
-
-        SearchPager.getInstance(this).getNewRelease(null);
-        SearchPager.getInstance(this).getMyTopTracks(null);
-        SearchPager.getInstance(this).getFeatured();
-    }
-
-    @Override
-    public void onLoggedOut() {
-        Log.d(TAG, "User logged out");
-    }
-
-    @Override
-    public void onLoginFailed(Error error) {
-        Log.d(TAG, "Login failed");
-        showToast("Login failed. You need Spotify Premium to use the app.");
-    }
-
-    @Override
-    public void onTemporaryError() {
-        Log.d(TAG, "Temporary error occurred");
-    }
-
-    @Override
-    public void onConnectionMessage(String message) {
-        Log.d(TAG, "Received connection message: " + message);
-    }
-
-    //  ____            _                   _   _
-    // |  _ \  ___  ___| |_ _ __ _   _  ___| |_(_) ___  _ __
-    // | | | |/ _ \/ __| __| '__| | | |/ __| __| |/ _ \| '_ \
-    // | |_| |  __/\__ \ |_| |  | |_| | (__| |_| | (_) | | | |
-    // |____/ \___||___/\__|_|   \__,_|\___|\__|_|\___/|_| |_|
-    //
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-
-        if (mPlayer != null) {
-            //mPlayer.removeNotificationCallback(MainActivity.this);
-            mPlayer.removeConnectionStateCallback(MainActivity.this);
-        }
-    }
-
-    @Override
-    protected void onDestroy() {
-        Log.d(TAG, "onDestroy");
-        Spotify.destroyPlayer(this);
-        super.onDestroy();
-    }
-
-
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-
-        PlaybackManager playbackManager = PlaybackManager.getInstance();
-        playbackManager.setSearchResultFragmentAdded(false);
-    }*/
 }
 

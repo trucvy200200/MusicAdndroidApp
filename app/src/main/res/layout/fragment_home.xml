@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/linearLayout"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    tools:context=".SongActivity"
     android:background="@color/md_theme_light_onSecondaryContainer"
     android:orientation="vertical">
     <TextView
@@ -14,7 +14,7 @@
         android:textColor="@color/colorWhite"
         android:textSize="30sp"
         android:textStyle="bold"
-        android:text="Home"
+        android:text="Songs"
         android:layout_marginBottom="30dp"
         android:id="@+id/view"
         android:layout_width="match_parent"
@@ -23,90 +23,39 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_height=""/>
+        />
+
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="506dp"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="5dp"
                 android:orientation="vertical"
                 android:padding="5dp">
+
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="591dp"
                     android:orientation="vertical">
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="10dp"
-                        android:text="Made For You"
-                        android:textColor="@color/colorWhite"
-                        android:textSize="18sp"
-                        android:textStyle="bold" />
+
                     <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/made_for_you_RecyclerView"
+                        android:id="@+id/RecyclerView"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="591dp"
                         android:layout_margin="5dp" />
                 </LinearLayout>
             </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="5dp"
-                android:orientation="vertical"
-                android:padding="5dp">
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="10dp"
-                        android:text="Top Artists"
-                        android:textColor="@color/colorWhite"
-                        android:textSize="18sp"
-                        android:textStyle="bold" />
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/top_artist_RecyclerView"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="5dp" />
-                </LinearLayout>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="5dp"
-                android:orientation="vertical"
-                android:padding="5dp">
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="10dp"
-                        android:text="Top Tracks"
-                        android:textColor="@color/colorWhite"
-                        android:textSize="18sp"
-                        android:textStyle="bold" />
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/top_tracks_RecyclerView"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="5dp" />
-                </LinearLayout>
-            </LinearLayout>
+
+
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 </LinearLayout>

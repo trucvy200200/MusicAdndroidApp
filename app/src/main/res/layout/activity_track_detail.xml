@@ -81,6 +81,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:gravity="center"
+                android:textSize="20dp"
                 android:layout_marginStart="10dp"
                 android:textColor="#ffff"
                 android:text="Save"/>
@@ -99,6 +100,7 @@
                 android:src="@drawable/ic_playlist_add_black_24dp"/>
 
             <TextView
+                android:textSize="20dp"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:gravity="center"
@@ -108,6 +110,7 @@
         </LinearLayout>
 
     <LinearLayout
+
             android:id="@+id/detail_radio_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -122,6 +125,7 @@
                 android:background="@drawable/ic_radio_black_24dp"/>
 
             <TextView
+                android:textSize="20dp"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:gravity="center"
@@ -143,6 +147,7 @@
                 android:src="@drawable/ic_surround_sound_black_24dp"/>
 
             <TextView
+                android:textSize="20dp"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:gravity="center"

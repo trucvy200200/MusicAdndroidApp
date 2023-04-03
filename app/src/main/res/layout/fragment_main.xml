@@ -2,139 +2,40 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/md_theme_light_onSecondaryContainer"
     android:id="@+id/main_fragment"
     android:orientation="vertical"
+    tools:context=".SongActivity"
     android:layout_height="match_parent">
-
-
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1">
-
-        <FrameLayout
-            android:id="@+id/fragment"
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/view_pager"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
     </FrameLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:gravity="center"
-            android:background="@color/seed"
-            android:textColor="#ffffff"
-            android:text="PLAYER FIELD"/>
-
-        <GridLayout
-            android:rowCount="1"
-            android:columnCount="3"
+    <com.google.android.material.tabs.TabLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="1dp"
-            android:orientation="horizontal">
-            <androidx.cardview.widget.CardView
-                android:backgroundTint="@color/seed"
-                android:layout_columnWeight="1"
-                app:cardElevation="12dp"
-                android:layout_width="100dp"
-                android:layout_height="50dp">
-            <LinearLayout
+            android:background="@color/seed"
+            app:tabTextColor="@color/colorWhite"
+            android:id="@+id/tab_layout">
+            <com.google.android.material.tabs.TabItem
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:orientation="vertical">
-                <Button
-                    android:id="@+id/nav_home"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:background="@drawable/ic_home_black_24dp"/>
+                android:layout_height="wrap_content"
+                android:text="Songs"/>
 
-                <TextView
-                    android:id="@+id/nav_home_text"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:textSize="12sp"
-                    android:textAlignment="center"
-                    android:layout_gravity="center"
-                    android:textColor="@color/colorNavIcon"
-                    android:layout_marginTop="-4dp"
-                    android:text="Home"/>
-            </LinearLayout>
-            </androidx.cardview.widget.CardView>
-            <androidx.cardview.widget.CardView
-                android:backgroundTint="@color/seed"
-                android:layout_columnWeight="2"
-                app:cardElevation="12dp"
-                android:layout_width="100dp"
-                android:layout_height="50dp">
-            <LinearLayout
+            <com.google.android.material.tabs.TabItem
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:layout_weight="1">
-
-                <Button
-                    android:id="@+id/nav_search"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:background="@drawable/ic_search_black_24dp"/>
-
-                <TextView
-                    android:id="@+id/nav_search_text"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:textSize="12sp"
-                    android:textAlignment="center"
-                    android:layout_gravity="center"
-                    android:textColor="@color/colorNavIcon"
-                    android:layout_marginTop="-4dp"
-                    android:text="Search"/>
-            </LinearLayout>
-            </androidx.cardview.widget.CardView>
-            <androidx.cardview.widget.CardView
-                android:backgroundTint="@color/seed"
-                android:layout_columnWeight="3"
-                app:cardElevation="12dp"
-                android:layout_width="100dp"
-                android:layout_height="50dp">
-            <LinearLayout
+                android:layout_height="wrap_content"
+                android:text="Search"/>
+            <com.google.android.material.tabs.TabItem
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:layout_weight="1">
-
-                <Button
-                    android:id="@+id/nav_library"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:background="@drawable/ic_library_music_black_24dp"/>
-
-                <TextView
-                    android:id="@+id/nav_library_text"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:textSize="12sp"
-                    android:textAlignment="center"
-                    android:layout_gravity="center"
-                    android:textColor="@color/colorNavIcon"
-                    android:layout_marginTop="-4dp"
-                    android:text="Your Library"/>
-            </LinearLayout>
-            </androidx.cardview.widget.CardView>
-        </GridLayout>
-
-
-
+                android:layout_height="wrap_content"
+                android:text="Library"/>
+        </com.google.android.material.tabs.TabLayout>
 
     </LinearLayout>
-
-</LinearLayout>

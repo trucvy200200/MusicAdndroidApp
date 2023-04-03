@@ -16,7 +16,7 @@
     <color name="colorWhite">#ffffff</color>
         <color name="orange">#ec7063</color>
         <color name="seed"> #34495e </color>
-        <color name="md_theme_light_primary">#6750A4</color>
+        <color name="dark_blue">#34495e</color>
         <color name="md_theme_light_onPrimary">#FFFFFF</color>
         <color name="md_theme_light_primaryContainer"> #117a65</color>
         <color name="md_theme_light_onPrimaryContainer">#22005D</color>

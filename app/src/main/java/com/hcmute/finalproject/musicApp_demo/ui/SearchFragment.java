@@ -5,6 +5,9 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -39,7 +42,7 @@ public class SearchFragment extends Fragment {
             fragment = new SearchFragment();
 
             FragmentTransaction ft = fm.beginTransaction();
-            ft.replace(R.id.fragment, fragment, tag).commitAllowingStateLoss();
+            ft.replace(R.id.view_pager, fragment, tag).commitAllowingStateLoss();
         }
         return fragment;
     }
@@ -48,57 +51,59 @@ public class SearchFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
-}
-    /*public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
+
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
 
         // check if the previous state is SearchResultFragment
-        PlaybackManager manager = PlaybackManager.getInstance();
-        if(manager.isSearchResultFragmentAdded())
-        {
-            fragmentManager = getFragmentManager();
-            FragmentTransaction ft = fragmentManager.beginTransaction();
-            ft.add(R.id.fragment, SearchResultFragment.newInstance("empty"))
-                    .addToBackStack(TAG)
-                    .commit();
-        }
+//        PlaybackManager manager = PlaybackManager.getInstance();
+//        if(manager.isSearchResultFragmentAdded())
+//        {
+//            fragmentManager = getFragmentManager();
+//            FragmentTransaction ft = fragmentManager.beginTransaction();
+//            ft.add(R.id.fragment, SearchResultFragment.newInstance("empty"))
+//                    .addToBackStack(TAG)
+//                    .commit();
+//        }
 
-        final View view = inflater.inflate(R.layout.fragment_search, container, false);
+        View view = inflater.inflate(R.layout.fragment_search, container, false);
+        return view;
+    }}
 
-        textViewSearch = view.findViewById(R.id.editTextSearch);
+//        textViewSearch = view.findViewById(R.id.editTextSearch);
+//
+//        final ImageButton searchButton = view.findViewById(R.id.search_text_button);
+//
+//        editTextSearch = view.findViewById(R.id.editTextSearch);
+//        searchButton.setOnClickListener(mListener);
+//        scalingLayout = view.findViewById(R.id.scalingLayout);
+//        searchListView = view.findViewById(R.id.Artist_search_list);
+//
+//        searchListView.setLayoutManager(new LinearLayoutManager(getContext()));
+//
+//        mAdapter = new ArtistListAdapter(ListManager.getInstance().getArtists());
+//        searchListView.setAdapter(mAdapter);
+//
+//        scalingLayout.setListener(new ScalingLayoutListener() {
+//            @Override
+//            public void onCollapsed() {
+//                ViewCompat.animate(textViewSearch).alpha(1).setDuration(150).start();
+//                ViewCompat.animate(searchLayout).alpha(0).setDuration(150).setListener(new ViewPropertyAnimatorListener() {
+//                    @Override
+//                    public void onAnimationStart(View view) {
+//                        textViewSearch.setVisibility(View.VISIBLE);
+//                    }
+//
+//                    @Override
+//                    public void onAnimationEnd(View view) {
+//                        searchLayout.setVisibility(View.INVISIBLE);
+//                    }
+//
+//                    @Override
+//                    public void onAnimationCancel(View view) {
+//
+//                    }
+//                }).start();
 
-        final ImageButton searchButton = view.findViewById(R.id.search_text_button);
-
-        editTextSearch = view.findViewById(R.id.editTextSearch);
-        searchButton.setOnClickListener(mListener);
-        scalingLayout = view.findViewById(R.id.scalingLayout);
-        searchListView = view.findViewById(R.id.Artist_search_list);
-
-        searchListView.setLayoutManager(new LinearLayoutManager(getContext()));
-
-        mAdapter = new ArtistListAdapter(ListManager.getInstance().getArtists());
-        searchListView.setAdapter(mAdapter);
-
-        scalingLayout.setListener(new ScalingLayoutListener() {
-            @Override
-            public void onCollapsed() {
-                ViewCompat.animate(textViewSearch).alpha(1).setDuration(150).start();
-                ViewCompat.animate(searchLayout).alpha(0).setDuration(150).setListener(new ViewPropertyAnimatorListener() {
-                    @Override
-                    public void onAnimationStart(View view) {
-                        textViewSearch.setVisibility(View.VISIBLE);
-                    }
-
-                    @Override
-                    public void onAnimationEnd(View view) {
-                        searchLayout.setVisibility(View.INVISIBLE);
-                    }
-
-                    @Override
-                    public void onAnimationCancel(View view) {
-
-                    }
-                }).start();
-            }*/
 
             /*@Override
             public void onExpand() {
