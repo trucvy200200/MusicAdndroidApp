@@ -2,21 +2,25 @@ package com.hcmute.finalproject.musicApp_demo;
 
 import static com.hcmute.finalproject.musicApp_demo.SongActivity.songs;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.media.MediaMetadataRetriever;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
-
+import androidx.palette.graphics.Palette;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.hcmute.finalproject.musicApp_demo.model.Music;
+import com.spotify.sdk.android.player.Player;
 
 import java.util.ArrayList;
 
@@ -26,10 +30,11 @@ public class PlayerActivity extends AppCompatActivity {
     SeekBar seekBar;
     FloatingActionButton playPauseBtn;
     int position=-1;
-    static ArrayList<Music> listSongs=new ArrayList<>();
+    static ArrayList<Music> listSongs;
     static Uri uri;
     static MediaPlayer mediaPlayer;
     private Handler handler=new Handler();
+    private Thread playThread,prevThread, nextThread;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,6 +74,70 @@ public class PlayerActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    protected void onResume() {
+        playThreadBtn();
+        nextThreadBtn();
+        prevThreadBtn();
+        super.onResume();
+    }
+    private void nextThreadBtn() {
+
+    }
+
+    private void prevThreadBtn() {
+
+    }
+
+    private void playThreadBtn() {
+        playThread=new Thread(){
+            @Override
+            public void run() {
+                super.run();
+                playPauseBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        playPauseBtnClick();
+                    }
+                });
+            }
+        };
+        playThread.start();
+    }
+
+    public void playPauseBtnClick() {
+        if (mediaPlayer.isPlaying()){
+            playPauseBtn.setImageResource(R.drawable.ic_play);
+            mediaPlayer.pause();
+            seekBar.setMax(mediaPlayer.getDuration()/1000);
+            PlayerActivity.this.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    if (mediaPlayer!=null){
+                        int mCurrentPosition=mediaPlayer.getCurrentPosition()/1000;
+                        seekBar.setProgress(mCurrentPosition);
+                    }
+                    handler.postDelayed(this,1000);
+                }
+            });
+        }
+        else{
+            playPauseBtn.setImageResource(R.drawable.ic_pause);
+            mediaPlayer.start();
+            seekBar.setMax(mediaPlayer.getDuration()/1000);
+            PlayerActivity.this.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    if (mediaPlayer!=null){
+                        int mCurrentPosition=mediaPlayer.getCurrentPosition()/1000;
+                        seekBar.setProgress(mCurrentPosition);
+                    }
+                    handler.postDelayed(this,1000);
+                }
+            });
+        }
     }
 
     private String formattedTime(int mCurrentPosition) {
@@ -118,7 +187,7 @@ public class PlayerActivity extends AppCompatActivity {
         nextBtn=findViewById(R.id.imgaebutton_next);
         prevBtn=findViewById(R.id.imgaebutton_pre);
         backBtn=findViewById(R.id.imgbutton_back);
-        shuffleBtn=findViewById(R.id.imgaebutton_like);
+        shuffleBtn=findViewById(R.id.imgaebutton_shuffle);
         seekBar=findViewById(R.id.seekbarSong);
         playPauseBtn=findViewById(R.id.play_pause);
         album=findViewById(R.id.detail_album_field);

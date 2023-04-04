@@ -105,7 +105,7 @@ public class SongActivity extends AppCompatActivity {
         };
         Cursor songCursor=contentResolver.query(songUri,projection,null,null, null);
         if (songCursor!=null && songCursor.moveToFirst()) {
-            songs= new ArrayList<>();
+            //songs= new ArrayList<>();
             int songTitle=songCursor.getColumnIndex(MediaStore.Audio.Media.TITLE);
             int songArtist=songCursor.getColumnIndex(MediaStore.Audio.Media.ARTIST);
             int songDuraion=songCursor.getColumnIndex(MediaStore.Audio.Media.DURATION);

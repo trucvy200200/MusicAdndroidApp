@@ -151,10 +151,10 @@
             android:layout_marginRight="15dp"
             />
         <ImageButton
-            android:src="@drawable/ic_heart"
+            android:src="@drawable/ic_shuffle"
             android:scaleType="fitXY"
             android:background="@null"
-            android:id="@+id/imgaebutton_like"
+            android:id="@+id/imgaebutton_shuffle"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginRight="15dp"
