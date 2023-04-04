@@ -4,6 +4,7 @@ import static com.hcmute.finalproject.musicApp_demo.SongActivity.repeatBoolean;
 import static com.hcmute.finalproject.musicApp_demo.SongActivity.shuffleBoolean;
 import static com.hcmute.finalproject.musicApp_demo.SongActivity.songs;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.media.MediaMetadataRetriever;
@@ -104,7 +105,13 @@ public class PlayerActivity extends AppCompatActivity implements MediaPlayer.OnC
                 }
             }
         });
-
+        backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(PlayerActivity.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
