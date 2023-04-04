@@ -37,9 +37,7 @@ public class FirebaseAPI {
                 for (DataSnapshot ds : snapshot.getChildren()) {
                     Song song = ds.getValue(Song.class);
                     songs.add(song);
-
                 }
-
                 customAdapter = new CustomAdapter(songs);
                 customAdapter.context = songActivity;
                 helper.onCallback(customAdapter);
