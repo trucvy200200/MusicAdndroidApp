@@ -1,10 +1,14 @@
-apply plugin: 'com.android.application'
+//apply plugin: 'com.android.application'
+plugins {
+    id 'com.android.application'
+    id 'com.google.gms.google-services'
+}
 
 android {
     compileSdkVersion 33
     buildToolsVersion "26.0.2"
     defaultConfig {
-        applicationId "com.sodastudio.jun.spotify_demo"
+        applicationId "com.hcmute.finalproject.musicApp_demo"
         minSdkVersion 23
         targetSdkVersion 33
         versionCode 1
@@ -19,6 +23,10 @@ android {
         }
         debug {
         }
+    }
+    buildFeatures {
+        dataBinding true
+        viewBinding true
     }
 }
 
@@ -38,23 +46,30 @@ dependencies {
     implementation 'com.android.support:design:26.0.1'
     implementation 'androidx.recyclerview:recyclerview:1.2.1'
     implementation 'androidx.core:core:1.9.0'
+    implementation 'androidx.viewpager2:viewpager2:1.0.0'
     testImplementation 'junit:junit:4.13.2'
     //noinspection GradleCompatible
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     implementation 'com.google.android.material:material:1.6.0'
-
-
     implementation 'com.github.iammert:ScalingLayout:1.1'
     //noinspection GradleCompatible
     implementation 'com.android.support:recyclerview-v7:26.1.0'
     implementation 'com.squareup.picasso:picasso:2.71828'
     implementation 'de.hdodenhof:circleimageview:2.2.0'
 
-    implementation 'com.spotify.sdk:spotify-android-auth-1.0.0@aar'
-    implementation 'com.spotify.sdk:spotify-player-24-noconnect-2.20b@aar'
-    implementation 'com.github.kaaes:spotify-web-api-android:0.4.1'
+    //Firebase
+    implementation platform('com.google.firebase:firebase-bom:31.4.0')
+    implementation 'com.google.firebase:firebase-auth'
+    implementation 'com.google.firebase:firebase-firestore'
+    implementation 'com.google.firebase:firebase-storage'
+    implementation 'com.google.firebase:firebase-database'
+
+   implementation 'com.spotify.sdk:spotify-android-auth-1.0.0@aar'
+   implementation 'com.spotify.sdk:spotify-player-24-noconnect-2.20b@aar'
+   implementation 'com.github.kaaes:spotify-web-api-android:0.4.1'
     implementation 'androidx.palette:palette:1.0.0'
     implementation 'com.github.bumptech.glide:glide:4.11.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
+
 }

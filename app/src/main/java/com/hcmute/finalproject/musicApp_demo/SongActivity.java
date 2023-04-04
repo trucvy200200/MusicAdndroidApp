@@ -1,44 +1,24 @@
 package com.hcmute.finalproject.musicApp_demo;
 
-import static android.net.Uri.*;
-
-import android.app.AlertDialog;
+import android.Manifest;
 import android.content.ContentResolver;
-import android.content.ContentUris;
-import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
-import android.content.ContentUris;
-import android.os.Build;
 import android.os.Bundle;
-import android.Manifest;
-import android.os.Environment;
 import android.provider.MediaStore;
-
-import android.util.Log;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
 import android.widget.Toast;
 
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContract;
-import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
-import androidx.viewpager.widget.ViewPager;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.google.android.material.tabs.TabLayout;
 import com.hcmute.finalproject.musicApp_demo.model.Music;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class SongActivity extends AppCompatActivity {
     public static ArrayList<Music> songs=new ArrayList<>();

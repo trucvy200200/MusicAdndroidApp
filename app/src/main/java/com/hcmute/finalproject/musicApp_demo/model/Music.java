@@ -14,6 +14,7 @@ public class Music {
     private int duration;
     private String artist;
     private String album;
+    private String image = null;
 
     public Music(String path, String title, int duration, String artist, String album) {
         this.path = path;
@@ -21,6 +22,15 @@ public class Music {
         this.duration = duration;
         this.artist = artist;
         this.album = album;
+    }
+
+    public Music(String path, String title, int duration, String artist, String album, String image) {
+        this.path = path;
+        this.title = title;
+        this.duration = duration;
+        this.artist = artist;
+        this.album = album;
+        this.image = image;
     }
 
     public String getPath() {
