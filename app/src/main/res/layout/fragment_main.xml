@@ -20,7 +20,7 @@
     <com.google.android.material.tabs.TabLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/seed"
+            android:background="@color/md_theme_light_onTertiaryContainer"
             app:tabTextColor="@color/colorWhite"
             android:id="@+id/tab_layout">
             <com.google.android.material.tabs.TabItem

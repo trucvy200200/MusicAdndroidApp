@@ -7,6 +7,7 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.webkit.MimeTypeMap;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -25,6 +26,7 @@ public class SongActivity extends AppCompatActivity {
     TabLayout tabLayout;
     ViewPager2 viewPager2;
     ViewPagerAdapter viewPagerAdapter;
+    static boolean shuffleBoolean=false, repeatBoolean=false;
     private static final int MY_PERMISSION_REQUEST=1;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -83,9 +85,14 @@ public class SongActivity extends AppCompatActivity {
                 MediaStore.Audio.Media.DATA,
                 MediaStore.Audio.Media.ARTIST,
         };
-        Cursor songCursor=contentResolver.query(songUri,projection,null,null, null);
+        String selectionMimeType = MediaStore.Files.FileColumns.MIME_TYPE + "=?";
+
+        String mimeType = MimeTypeMap.getSingleton().getMimeTypeFromExtension("mp3");
+
+        String[] selectionArgsMp3 = new String[]{ mimeType };
+        Cursor songCursor=contentResolver.query(songUri,projection,selectionMimeType,selectionArgsMp3, null);
         if (songCursor!=null && songCursor.moveToFirst()) {
-            //songs= new ArrayList<>();
+            songs= new ArrayList<>();
             int songTitle=songCursor.getColumnIndex(MediaStore.Audio.Media.TITLE);
             int songArtist=songCursor.getColumnIndex(MediaStore.Audio.Media.ARTIST);
             int songDuraion=songCursor.getColumnIndex(MediaStore.Audio.Media.DURATION);

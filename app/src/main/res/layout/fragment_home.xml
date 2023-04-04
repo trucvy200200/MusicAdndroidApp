@@ -15,7 +15,7 @@
         android:textSize="30sp"
         android:textStyle="bold"
         android:text="Songs"
-        android:layout_marginBottom="30dp"
+        android:layout_marginBottom="10dp"
         android:id="@+id/view"
         android:layout_width="match_parent"
         android:layout_height="100dp"
@@ -27,7 +27,7 @@
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="506dp"
+        android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <LinearLayout
@@ -38,24 +38,19 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_margin="5dp"
-                android:orientation="vertical"
-                android:padding="5dp">
+                android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="591dp"
+                    android:layout_height="match_parent"
                     android:orientation="vertical">
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/RecyclerView"
                         android:layout_width="match_parent"
-                        android:layout_height="591dp"
-                        android:layout_margin="5dp" />
+                        android:layout_height="match_parent" />
                 </LinearLayout>
             </LinearLayout>
-
-
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 </LinearLayout>

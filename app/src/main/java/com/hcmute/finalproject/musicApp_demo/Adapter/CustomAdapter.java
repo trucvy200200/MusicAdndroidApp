@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.hcmute.finalproject.musicApp_demo.databinding.CustomRowBinding;
+import com.hcmute.finalproject.musicApp_demo.databinding.MusicBinding;
 import com.hcmute.finalproject.musicApp_demo.model.Music;
 import com.hcmute.finalproject.musicApp_demo.model.Song;
 
@@ -18,7 +19,7 @@ import java.util.List;
 public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHolder> {
     public Context context;
 
-    CustomRowBinding binding;
+    MusicBinding binding;
     private List<Song> songs;
 
     public CustomAdapter(List<Song> songs) {
@@ -28,7 +29,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        binding = CustomRowBinding.inflate(LayoutInflater.from(context), parent, false);
+        binding = MusicBinding.inflate(LayoutInflater.from(context), parent, false);
         View view = binding.getRoot();
         return new MyViewHolder(view);
     }
@@ -40,7 +41,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
 //        holder.song_id_txt.setText(String.valueOf(position + 1));
         holder.song_title_txt.setText(String.valueOf(song.getSongName()));
         holder.song_singer_txt.setText(String.valueOf(song.getSongArtist()));
-        holder.song_stream_txt.setText(String.valueOf(song.getSongDuration()));
+//        holder.song_stream_txt.setText(String.valueOf(song.getSongDuration()));
 
     }
 
@@ -49,9 +50,9 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 //            song_id_txt = binding.songId;
-            song_title_txt = binding.songTitle;
-            song_singer_txt = binding.songSinger;
-            song_stream_txt = binding.songStream;
+            song_title_txt = binding.title;
+            song_singer_txt = binding.artist;
+//            song_stream_txt = binding.songStream;
         }
     }
 

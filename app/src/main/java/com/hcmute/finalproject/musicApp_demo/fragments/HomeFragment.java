@@ -11,9 +11,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.hcmute.finalproject.musicApp_demo.MusicAdapter;
 import com.hcmute.finalproject.musicApp_demo.R;
+import com.hcmute.finalproject.musicApp_demo.databinding.MusicBinding;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -23,6 +25,8 @@ import com.hcmute.finalproject.musicApp_demo.R;
 public class HomeFragment extends Fragment {
     RecyclerView recycleView;
     MusicAdapter musicAdapter;
+
+
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -32,6 +36,7 @@ public class HomeFragment extends Fragment {
     private String mParam1;
     private String mParam2;
     private View mView;
+
     public HomeFragment() {
         // Required empty public constructor
     }
@@ -72,6 +77,7 @@ public class HomeFragment extends Fragment {
        mView= inflater.inflate(R.layout.fragment_home, container, false);
        recycleView=mView.findViewById(R.id.RecyclerView);
        recycleView.setHasFixedSize(true);
+
        if (!(songs.size()<1))
        {
            musicAdapter=new MusicAdapter(getContext(), songs);

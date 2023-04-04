@@ -1,5 +1,7 @@
 package com.hcmute.finalproject.musicApp_demo;
 
+import static com.hcmute.finalproject.musicApp_demo.SongActivity.repeatBoolean;
+import static com.hcmute.finalproject.musicApp_demo.SongActivity.shuffleBoolean;
 import static com.hcmute.finalproject.musicApp_demo.SongActivity.songs;
 
 import android.graphics.Bitmap;
@@ -23,13 +25,15 @@ import com.hcmute.finalproject.musicApp_demo.model.Music;
 import com.spotify.sdk.android.player.Player;
 
 import java.util.ArrayList;
+import java.util.Random;
 
-public class PlayerActivity extends AppCompatActivity {
+public class PlayerActivity extends AppCompatActivity implements MediaPlayer.OnCompletionListener {
     TextView song_name, artist_name, duration_played, duration_total, album;
     ImageView cover_art, nextBtn, prevBtn, backBtn, shuffleBtn, repeatBtn;
     SeekBar seekBar;
     FloatingActionButton playPauseBtn;
     int position=-1;
+
     static ArrayList<Music> listSongs;
     static Uri uri;
     static MediaPlayer mediaPlayer;
@@ -44,6 +48,7 @@ public class PlayerActivity extends AppCompatActivity {
         song_name.setText(listSongs.get(position).getTitle());
         artist_name.setText(listSongs.get(position).getArtist());
         album.setText(listSongs.get(position).getAlbum());
+        mediaPlayer.setOnCompletionListener(this);
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
@@ -73,6 +78,32 @@ public class PlayerActivity extends AppCompatActivity {
                 handler.postDelayed(this,1000);
             }
         });
+        shuffleBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (shuffleBoolean){
+                    shuffleBoolean=false;
+                    shuffleBtn.setImageResource(R.drawable.ic_shuffle);
+                }
+                else{
+                    shuffleBoolean=true;
+                    shuffleBtn.setImageResource(R.drawable.ic_shuffle_on);
+                }
+            }
+        });
+        repeatBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (repeatBoolean){
+                    repeatBoolean=false;
+                    repeatBtn.setImageResource(R.drawable.ic_repeat);
+                }
+                else{
+                    repeatBoolean=true;
+                    repeatBtn.setImageResource(R.drawable.ic_repeat_on);
+                }
+            }
+        });
 
     }
 
@@ -83,12 +114,169 @@ public class PlayerActivity extends AppCompatActivity {
         prevThreadBtn();
         super.onResume();
     }
-    private void nextThreadBtn() {
 
+    private void nextThreadBtn() {
+        nextThread=new Thread(){
+            @Override
+            public void run() {
+                super.run();
+                nextBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        nextBtnClicked();
+                    }
+                });
+            }
+        };
+        nextThread.start();
+    }
+
+    private void nextBtnClicked() {
+        if (mediaPlayer.isPlaying()) {
+            mediaPlayer.stop();
+            mediaPlayer.release();
+            if (shuffleBoolean && !repeatBoolean){
+                position=getRandom(listSongs.size()-1);
+            }
+            else if (!shuffleBoolean && !repeatBoolean){
+                position=((position+1)%listSongs.size());
+            }
+            uri = Uri.parse(listSongs.get(position).getPath());
+            mediaPlayer=MediaPlayer.create(getApplicationContext(),uri);
+            metaData(uri);
+            song_name.setText(listSongs.get(position).getTitle());
+            artist_name.setText(listSongs.get(position).getArtist());
+            album.setText(listSongs.get(position).getAlbum());
+            seekBar.setMax(mediaPlayer.getDuration()/1000);
+            PlayerActivity.this.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    if (mediaPlayer!=null){
+                        int mCurrentPosition=mediaPlayer.getCurrentPosition()/1000;
+                        seekBar.setProgress(mCurrentPosition);
+                    }
+                    handler.postDelayed(this,1000);
+                }
+            });
+            mediaPlayer.setOnCompletionListener(this);
+            playPauseBtn.setBackgroundResource(R.drawable.ic_pause);
+            mediaPlayer.start();
+        }
+        else{
+            mediaPlayer.stop();
+            mediaPlayer.release();
+            if (shuffleBoolean && !repeatBoolean){
+                playPauseBtn.setImageResource(R.drawable.ic_pause);
+                position=getRandom(listSongs.size()-1);
+            }
+            else if (!shuffleBoolean && !repeatBoolean){
+                position=((position+1)%listSongs.size());
+            }
+
+            uri = Uri.parse(listSongs.get(position).getPath());
+            mediaPlayer=MediaPlayer.create(getApplicationContext(),uri);
+            metaData(uri);
+            song_name.setText(listSongs.get(position).getTitle());
+            artist_name.setText(listSongs.get(position).getArtist());
+            album.setText(listSongs.get(position).getAlbum());
+            seekBar.setMax(mediaPlayer.getDuration()/1000);
+            PlayerActivity.this.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    if (mediaPlayer!=null){
+                        int mCurrentPosition=mediaPlayer.getCurrentPosition()/1000;
+                        seekBar.setProgress(mCurrentPosition);
+                    }
+                    handler.postDelayed(this,1000);
+                }
+            });
+            mediaPlayer.setOnCompletionListener(this);
+            playPauseBtn.setBackgroundResource(R.drawable.ic_play);
+        }
+    }
+
+    private int getRandom(int i) {
+        Random random=new Random();
+        return random.nextInt(i+1);
     }
 
     private void prevThreadBtn() {
+        prevThread=new Thread(){
+            @Override
+            public void run() {
+                super.run();
+                prevBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        prevBtnClicked();
+                    }
+                });
+            }
+        };
+        prevThread.start();
+    }
 
+    private void prevBtnClicked() {
+        if (mediaPlayer.isPlaying()) {
+            mediaPlayer.stop();
+            mediaPlayer.release();
+            if (shuffleBoolean && !repeatBoolean){
+                position=getRandom(listSongs.size()-1);
+            }
+            else if (!shuffleBoolean && !repeatBoolean){
+                position = ((position - 1)<0 ? (listSongs.size()-1):(position-1));
+            }
+
+            uri = Uri.parse(listSongs.get(position).getPath());
+            mediaPlayer=MediaPlayer.create(getApplicationContext(),uri);
+            metaData(uri);
+            song_name.setText(listSongs.get(position).getTitle());
+            artist_name.setText(listSongs.get(position).getArtist());
+            album.setText(listSongs.get(position).getAlbum());
+            seekBar.setMax(mediaPlayer.getDuration()/1000);
+            PlayerActivity.this.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    if (mediaPlayer!=null){
+                        int mCurrentPosition=mediaPlayer.getCurrentPosition()/1000;
+                        seekBar.setProgress(mCurrentPosition);
+                    }
+                    handler.postDelayed(this,1000);
+                }
+            });
+            mediaPlayer.setOnCompletionListener(this);
+            playPauseBtn.setBackgroundResource(R.drawable.ic_pause);
+            mediaPlayer.start();
+        }
+        else{
+            mediaPlayer.stop();
+            mediaPlayer.release();
+            if (shuffleBoolean && !repeatBoolean){
+                position=getRandom(listSongs.size()-1);
+            }
+            else if (!shuffleBoolean && !repeatBoolean){
+                position = ((position - 1)<0 ? (listSongs.size()-1):(position-1));
+            }
+            uri = Uri.parse(listSongs.get(position).getPath());
+            mediaPlayer=MediaPlayer.create(getApplicationContext(),uri);
+            metaData(uri);
+            song_name.setText(listSongs.get(position).getTitle());
+            artist_name.setText(listSongs.get(position).getArtist());
+            album.setText(listSongs.get(position).getAlbum());
+            seekBar.setMax(mediaPlayer.getDuration()/1000);
+            PlayerActivity.this.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    if (mediaPlayer!=null){
+                        int mCurrentPosition=mediaPlayer.getCurrentPosition()/1000;
+                        seekBar.setProgress(mCurrentPosition);
+                    }
+                    handler.postDelayed(this,1000);
+                }
+            });
+            mediaPlayer.setOnCompletionListener(this);
+            playPauseBtn.setBackgroundResource(R.drawable.ic_play);
+        }
     }
 
     private void playThreadBtn() {
@@ -122,6 +310,7 @@ public class PlayerActivity extends AppCompatActivity {
                     handler.postDelayed(this,1000);
                 }
             });
+
         }
         else{
             playPauseBtn.setImageResource(R.drawable.ic_pause);
@@ -180,6 +369,7 @@ public class PlayerActivity extends AppCompatActivity {
 
     private void initViews() {
         song_name=findViewById(R.id.detail_track_title_field);
+        song_name.setSelected(true);
         artist_name=findViewById(R.id.detail_artist_field);
         duration_played=findViewById(R.id.textview_SongTime);
         duration_total=findViewById(R.id.textview_TotalTime);
@@ -191,6 +381,8 @@ public class PlayerActivity extends AppCompatActivity {
         seekBar=findViewById(R.id.seekbarSong);
         playPauseBtn=findViewById(R.id.play_pause);
         album=findViewById(R.id.detail_album_field);
+        album.setSelected(true);
+        repeatBtn=findViewById(R.id.imgaebutton_repeat);
     }
 
     private void metaData(Uri uri){
@@ -203,7 +395,18 @@ public class PlayerActivity extends AppCompatActivity {
             Glide.with(this).asBitmap().load(art).into(cover_art);
         }
         else{
-            Glide.with(this).asBitmap().load(R.drawable.ic_heart).into(cover_art);
+            Glide.with(this).asBitmap().load(R.drawable.ic_default).into(cover_art);
+        }
+    }
+
+    @Override
+    public void onCompletion(MediaPlayer mp) {
+        nextBtnClicked();
+        if (mediaPlayer!=null){
+
+            mediaPlayer=MediaPlayer.create(getApplicationContext(),uri);
+            mediaPlayer.start();
+            mediaPlayer.setOnCompletionListener(this);
         }
     }
 }

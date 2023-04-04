@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.media.MediaMetadata;
 import android.media.MediaMetadataRetriever;
 import android.net.Uri;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,6 +26,7 @@ import java.util.List;
 public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.MyViewHolder> {
     private Context mContext;
     private ArrayList<Music> songs;
+
     public MusicAdapter(Context mContext, ArrayList<Music> songs){
         this.songs=songs;
         this.mContext=mContext;
@@ -39,6 +41,7 @@ public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.MyViewHolder
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         holder.file_name.setText(songs.get(position).getTitle());
+
         holder.artist.setText(songs.get(position).getArtist());
         try {
             byte[] image = getAlbumArt(songs.get(position).getPath());
@@ -47,7 +50,7 @@ public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.MyViewHolder
                         .into(holder.album_art);
             }
             else{
-                Glide.with(mContext).load(R.drawable.ic_heart)
+                Glide.with(mContext).load(R.drawable.ic_default)
                         .into(holder.album_art);
             }
         } catch (IOException e) {
@@ -77,12 +80,14 @@ public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.MyViewHolder
             super(itemView);
             artist=itemView.findViewById(R.id.artist);
             file_name=itemView.findViewById(R.id.title);
+            file_name.setSelected(true);
             album_art=itemView.findViewById(R.id.image);
         }
 
     }
     private byte[] getAlbumArt(String uri) throws IOException {
         MediaMetadataRetriever retriever=new MediaMetadataRetriever();
+        Log.d("Check Uri", uri);
         retriever.setDataSource(uri);
         byte[] art=retriever.getEmbeddedPicture();
         retriever.release();
