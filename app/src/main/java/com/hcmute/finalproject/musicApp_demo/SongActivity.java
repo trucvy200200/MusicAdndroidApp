@@ -41,7 +41,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SongActivity extends AppCompatActivity {
-    public static ArrayList<Music> songs;
+    public static ArrayList<Music> songs=new ArrayList<>();
     TabLayout tabLayout;
     ViewPager2 viewPager2;
     ViewPagerAdapter viewPagerAdapter;
