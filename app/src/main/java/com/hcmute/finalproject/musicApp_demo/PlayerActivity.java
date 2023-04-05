@@ -108,8 +108,7 @@ public class PlayerActivity extends AppCompatActivity implements MediaPlayer.OnC
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(PlayerActivity.this, MainActivity.class);
-                startActivity(intent);
+               onBackPressed();
             }
         });
     }
