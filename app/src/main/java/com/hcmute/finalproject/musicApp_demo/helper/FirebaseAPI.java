@@ -21,7 +21,7 @@ import java.util.ArrayList;
 public class FirebaseAPI {
     private final SongActivity songActivity;
     private CustomAdapter customAdapter;
-    ArrayList<Song> songs;
+    ArrayList<Music> songs;
 
     public FirebaseAPI(SongActivity activity) {
         this.songActivity = activity;
@@ -35,7 +35,7 @@ public class FirebaseAPI {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 songs = new ArrayList<>();
                 for (DataSnapshot ds : snapshot.getChildren()) {
-                    Song song = ds.getValue(Song.class);
+                    Music song = ds.getValue(Music.class);
                     songs.add(song);
                 }
                 customAdapter = new CustomAdapter(songs);

@@ -22,7 +22,8 @@
         </activity>
         <activity android:name=".MainActivity"/>
         <activity android:name=".PlayerActivity" android:exported="false"/>
-
+        <activity android:name=".PlayerStreamActivity" android:exported="false"/>
+        
         <service android:name=".MusicService"
             android:enabled="true"
             android:exported="true"/>

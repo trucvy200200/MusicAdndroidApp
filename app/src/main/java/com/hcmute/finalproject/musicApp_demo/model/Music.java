@@ -4,17 +4,23 @@ import android.net.Uri;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.io.Serializable;
+
 /**
  * Created by jun on 12/29/17.
  */
 
-public class Music {
+public class Music implements Serializable {
     private String path;
     private String title;
     private int duration;
     private String artist;
     private String album;
     private String image = null;
+
+    public Music() {
+
+    }
 
     public Music(String path, String title, int duration, String artist, String album) {
         this.path = path;
