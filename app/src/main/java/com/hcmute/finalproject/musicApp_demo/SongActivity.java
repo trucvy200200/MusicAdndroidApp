@@ -2,6 +2,7 @@ package com.hcmute.finalproject.musicApp_demo;
 
 import android.Manifest;
 import android.content.ContentResolver;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
@@ -28,6 +29,14 @@ public class SongActivity extends AppCompatActivity {
     ViewPagerAdapter viewPagerAdapter;
     static boolean shuffleBoolean=false, repeatBoolean=false;
     private static final int MY_PERMISSION_REQUEST=1;
+    public  static  final String MUSIC_LAST_PLAYED="LAST_PLAYED";
+    public static final String MUSIC_FILE="STORED_MUSIC";
+    public static final String ARTIST_NAME="ARTIST NAME";
+    public static final String SONG_NAME="SONG NAME";
+    public  static String PATH_TO_FRAG=null;
+    public  static String ARTIST_TO_FRAG=null;
+    public  static String SONG_NAME_TO_FRAG=null;
+    public static boolean SHOW_MINI_PLAYER =false ;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -91,26 +100,30 @@ public class SongActivity extends AppCompatActivity {
 
         String[] selectionArgsMp3 = new String[]{ mimeType };
         Cursor songCursor=contentResolver.query(songUri,projection,selectionMimeType,selectionArgsMp3, null);
-        if (songCursor!=null && songCursor.moveToFirst()) {
-            songs= new ArrayList<>();
-            int songTitle=songCursor.getColumnIndex(MediaStore.Audio.Media.TITLE);
-            int songArtist=songCursor.getColumnIndex(MediaStore.Audio.Media.ARTIST);
-            int songDuraion=songCursor.getColumnIndex(MediaStore.Audio.Media.DURATION);
-            int songAlbum=songCursor.getColumnIndex(MediaStore.Audio.Media.ALBUM);
-            int songPath=songCursor.getColumnIndex(MediaStore.Audio.Media.DATA);
-            do{
-                String album=songCursor.getString(songAlbum);
-                String title=songCursor.getString(songTitle);
-                String artist=songCursor.getString(songArtist);
-                int duration=songCursor.getInt(songDuraion);
-                String path=songCursor.getString(songPath);
+        try {
+            if (songCursor != null && songCursor.moveToFirst()) {
+                songs = new ArrayList<>();
+                int songTitle = songCursor.getColumnIndex(MediaStore.Audio.Media.TITLE);
+                int songArtist = songCursor.getColumnIndex(MediaStore.Audio.Media.ARTIST);
+                int songDuraion = songCursor.getColumnIndex(MediaStore.Audio.Media.DURATION);
+                int songAlbum = songCursor.getColumnIndex(MediaStore.Audio.Media.ALBUM);
+                int songPath = songCursor.getColumnIndex(MediaStore.Audio.Media.DATA);
+                do {
+                    String album = songCursor.getString(songAlbum);
+                    String title = songCursor.getString(songTitle);
+                    String artist = songCursor.getString(songArtist);
+                    int duration = songCursor.getInt(songDuraion);
+                    String path = songCursor.getString(songPath);
 
-                Music song=new Music(path,title,duration,artist,album);
-                songs.add(song);
-            }while (songCursor.moveToNext());
-            Toast.makeText(getApplicationContext(),"Number songs: "+songs.size(), Toast.LENGTH_SHORT).show();
+                    Music song = new Music(path, title, duration, artist, album);
+                    songs.add(song);
+                } while (songCursor.moveToNext());
+                Toast.makeText(getApplicationContext(), "Number songs: " + songs.size(), Toast.LENGTH_SHORT).show();
+            }
         }
+        catch (Exception e){
 
+        }
 
     }
 
@@ -130,5 +143,32 @@ public class SongActivity extends AppCompatActivity {
 
             }
         }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        SharedPreferences preferences=getSharedPreferences(MUSIC_LAST_PLAYED,MODE_PRIVATE);
+        String path=preferences.getString(MUSIC_FILE,null);
+        String artist =preferences.getString(ARTIST_NAME,null);
+        String song_name =preferences.getString(SONG_NAME,null);
+
+        if(path!=null)
+        {
+            SHOW_MINI_PLAYER=true;
+            PATH_TO_FRAG=path;
+            ARTIST_TO_FRAG=artist;
+            SONG_NAME_TO_FRAG=song_name;
+
+        }
+        else {
+            SHOW_MINI_PLAYER=false;
+            PATH_TO_FRAG=null;
+            ARTIST_TO_FRAG=null;
+            SONG_NAME_TO_FRAG=null;
+        }
     }
+
+}
+
+
 

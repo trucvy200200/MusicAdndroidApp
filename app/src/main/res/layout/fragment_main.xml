@@ -17,6 +17,11 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
     </FrameLayout>
+<!--    <fragment-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:name="com.hcmute.finalproject.musicApp_demo.fragments.NowPlayingFragmentBottom"-->
+<!--        tools:layout="@layout/fragment_now_playing_bottom"/>-->
     <com.google.android.material.tabs.TabLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

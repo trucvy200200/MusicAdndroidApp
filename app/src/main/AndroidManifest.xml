@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.hcmute.finalproject.musicApp_demo">
-    <uses-permission android:name="android.permission.READ_MEDIA_AUDIO" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-
+    <uses-permission android:name="android.permission.READ_MEDIA_AUDIO" />
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:name=".ApplicationClass"
         android:theme="@style/AppTheme.NoActionBar">
         <activity android:name="com.hcmute.finalproject.musicApp_demo.SongActivity" android:exported="true">
         <intent-filter>
@@ -18,8 +20,21 @@
             <category android:name="android.intent.category.LAUNCHER" />
         </intent-filter>
         </activity>
-        <activity android:name=".MainActivity"></activity>
-        <activity android:name=".PlayerActivity"></activity>
+        <activity android:name=".MainActivity"/>
+        <activity android:name=".PlayerActivity" android:exported="false"/>
+
+        <service android:name=".MusicService"
+            android:enabled="true"
+            android:exported="true"/>
+
+        <receiver android:name=".NotificationReceiver"
+            android:exported="true"  android:enabled="true">
+            <intent-filter>
+                <action android:name="actionprevious"/>
+                <action android:name="actionnext"/>
+                <action android:name="actionplay"/>
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>
