@@ -1,6 +1,7 @@
 package com.hcmute.finalproject.musicApp_demo.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,20 +10,23 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.hcmute.finalproject.musicApp_demo.PlayerActivity;
+import com.hcmute.finalproject.musicApp_demo.PlayerStreamActivity;
 import com.hcmute.finalproject.musicApp_demo.databinding.CustomRowBinding;
 import com.hcmute.finalproject.musicApp_demo.databinding.MusicBinding;
 import com.hcmute.finalproject.musicApp_demo.model.Music;
 import com.hcmute.finalproject.musicApp_demo.model.Song;
 
+import java.io.Serializable;
 import java.util.List;
 
 public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHolder> {
     public Context context;
 
     MusicBinding binding;
-    private List<Song> songs;
+    private List<Music> songs;
 
-    public CustomAdapter(List<Song> songs) {
+    public CustomAdapter(List<Music> songs) {
         this.songs = songs;
     }
 
@@ -36,13 +40,19 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        Song song = songs.get(position);
+        Music song = songs.get(position);
 
 //        holder.song_id_txt.setText(String.valueOf(position + 1));
-        holder.song_title_txt.setText(String.valueOf(song.getSongName()));
-        holder.song_singer_txt.setText(String.valueOf(song.getSongArtist()));
+        holder.song_title_txt.setText(String.valueOf(song.getTitle()));
+        holder.song_singer_txt.setText(String.valueOf(song.getArtist()));
 //        holder.song_stream_txt.setText(String.valueOf(song.getSongDuration()));
 
+        holder.itemView.setOnClickListener(v -> {
+            Intent intent = new Intent(context, PlayerStreamActivity.class);
+            intent.putExtra("position", position);
+            intent.putExtra("songs", (Serializable) songs);
+            context.startActivity(intent);
+        });
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {

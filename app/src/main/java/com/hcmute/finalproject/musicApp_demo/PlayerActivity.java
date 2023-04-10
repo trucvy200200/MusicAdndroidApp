@@ -40,7 +40,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.bumptech.glide.Glide;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.hcmute.finalproject.musicApp_demo.model.Music;
-import com.spotify.sdk.android.player.Player;
 
 import java.io.IOException;
 import java.util.ArrayList;
