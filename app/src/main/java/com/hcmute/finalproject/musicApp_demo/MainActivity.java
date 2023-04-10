@@ -1,14 +1,31 @@
 package com.hcmute.finalproject.musicApp_demo;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.google.android.material.tabs.TabLayout;
+import com.google.firebase.auth.FirebaseAuth;
+import com.hcmute.finalproject.musicApp_demo.Service.MyDownloadService;
+import com.hcmute.finalproject.musicApp_demo.Service.MyUploadService;
+
+import java.util.Locale;
+
 public class MainActivity extends AppCompatActivity
     //implements ConnectionStateCallback
 {
@@ -18,6 +35,8 @@ public class MainActivity extends AppCompatActivity
     ViewPager2 viewPager2;
     ViewPagerAdapter viewPagerAdapter;
     TextView songName;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,6 +46,7 @@ public class MainActivity extends AppCompatActivity
         viewPager2=findViewById(R.id.view_pager);
         viewPagerAdapter=new ViewPagerAdapter(this);
         viewPager2.setAdapter(viewPagerAdapter);
+
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
@@ -51,8 +71,8 @@ public class MainActivity extends AppCompatActivity
             }
         });;
 
-    }
 
+    }
 
 }
 

@@ -23,7 +23,7 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
-                                      <entry key="url" value="file:/$USER_HOME$/AppData/Local/Android/Sdk/icons/material/materialicons/repeat/baseline_repeat_24.xml" />
+                                      <entry key="url" value="file:/$PROJECT_DIR$/../../../../Program%20Files/Android/sdk/icons/material/materialicons/arrow_circle_up/baseline_arrow_circle_up_24.xml" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -33,8 +33,8 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="color" value="117a65" />
-                            <entry key="outputName" value="ic_repeat_on" />
+                            <entry key="color" value="1dcda6" />
+                            <entry key="outputName" value="baseline_arrow_circle_up_24" />
                             <entry key="sourceFile" value="D:\SCHOOL\Junior\Mobile Programming\MusicAdndroidApp" />
                           </map>
                         </option>

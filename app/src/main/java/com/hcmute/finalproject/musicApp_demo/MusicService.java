@@ -205,14 +205,14 @@ public class MusicService extends Service implements MediaPlayer.OnCompletionLis
         PendingIntent contentIntent=PendingIntent.getActivity(this,0,intent,0);
 //        PendingIntent contentIntent=PendingIntent.getActivity(this,0,intent,PendingIntent.FLAG_MUTABLE);
         Intent preIntent=new Intent(this,NotificationReceiver.class).setAction(ACTION_PREVIOUS);
-        PendingIntent prevPending=PendingIntent.getBroadcast(this,0,preIntent,PendingIntent.FLAG_UPDATE_CURRENT);
+        PendingIntent prevPending=PendingIntent.getBroadcast(this,0,preIntent,PendingIntent.FLAG_MUTABLE | PendingIntent.FLAG_UPDATE_CURRENT);
 //        PendingIntent prevPending=PendingIntent.getBroadcast(this,0,preIntent,PendingIntent.FLAG_MUTABLE);
         Intent pauseIntent=new Intent(this,NotificationReceiver.class).setAction(ACTION_PLAY);
-        PendingIntent pausePending=PendingIntent.getBroadcast(this,0,pauseIntent,PendingIntent.FLAG_UPDATE_CURRENT);
+        PendingIntent pausePending=PendingIntent.getBroadcast(this,0,pauseIntent,PendingIntent.FLAG_MUTABLE | PendingIntent.FLAG_UPDATE_CURRENT);
 //        PendingIntent pausePending=PendingIntent.getBroadcast(this,0,pauseIntent,PendingIntent.FLAG_MUTABLE);
         Intent nextIntent=new Intent(this,NotificationReceiver.class).setAction(ACTION_NEXT);
 //        PendingIntent nextPending=PendingIntent.getBroadcast(this,0,nextIntent,PendingIntent.FLAG_UPDATE_CURRENT);
-        PendingIntent nextPending=PendingIntent.getBroadcast(this,0,nextIntent,PendingIntent.FLAG_MUTABLE);
+        PendingIntent nextPending=PendingIntent.getBroadcast(this,0,nextIntent,PendingIntent.FLAG_MUTABLE | PendingIntent.FLAG_UPDATE_CURRENT);
         byte[] picture=null;
         try {
             picture= getAlbumArt(musicFiles.get(position).getPath());
