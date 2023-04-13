@@ -2,6 +2,7 @@ package com.hcmute.finalproject.musicApp_demo.Service;
 
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.os.Environment;
 import android.os.IBinder;
 import android.util.Log;
 
@@ -11,8 +12,13 @@ import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.StreamDownloadTask;
 import com.hcmute.finalproject.musicApp_demo.MainActivity;
 import com.hcmute.finalproject.musicApp_demo.R;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.OutputStream;
 
 public class MyDownloadService extends MyBaseTaskService {
 
@@ -64,44 +70,119 @@ public class MyDownloadService extends MyBaseTaskService {
         taskStarted();
 //        showProgressNotification(getString(R.string.progress_downloading), 0, 0);
 
-        // Download and get total bytes
-        mStorageRef.child(downloadPath).getStream(
-                        (taskSnapshot, inputStream) -> {
-//                            long totalBytes = taskSnapshot.getTotalByteCount();
-//                            long bytesDownloaded = 0;
+
+//        mStorageRef.child(downloadPath).getStream()
+
+        // save to sdcard
+        File musicFolder = new File(Environment.getExternalStorageDirectory() + "/MusicApp");
+        try {
+            // make sure the Music folder exists
+            if (!musicFolder.exists()) {
+                boolean result = musicFolder.mkdirs();
+                Log.d(TAG, "downloadFromPath: " + "Music folder created: " + result);
+            }
+
+        } catch (Exception e) {
+            Log.e("Error", e.getMessage());
+        }
+
+        try {
+            File file = new File(musicFolder.getAbsolutePath(), downloadPath.lastIndexOf('/') > 0 ? downloadPath.substring(downloadPath.lastIndexOf('/') + 1) : downloadPath);
+            Log.e("Download", file.getAbsolutePath());
+
+            // get download url
+//            String downloadUrl = mStorageRef.child(downloadPath).getDownloadUrl().toString();
+//            StorageReference ref = mStorageRef.child(downloadPath);
+//            ref.getDownloadUrl().addOnSuccessListener(downloadURI -> {
+//                ref.child(downloadPath).getFile(file)
+//                    .addOnSuccessListener(taskSnapshot -> {
+//                        Log.d(TAG, "download:SUCCESS");
 //
-//                            byte[] buffer = new byte[1024];
-//                            int size;
+//                        // Send success broadcast with number of bytes downloaded
+//                        broadcastDownloadFinished(downloadPath, taskSnapshot.getTotalByteCount());
+//                        showDownloadFinishedNotification(downloadPath, (int) taskSnapshot.getTotalByteCount());
+//
+//                        // Log downloaded path
+//                        Log.d(TAG, "download:SUCCESS:" + downloadPath);
+//
+//                        // Mark task completed
+//                        taskCompleted();
+//                    }).addOnFailureListener(exception -> {
+//                        Log.w(TAG, "download:FAILURE", exception);
+//
+//                        // Send failure broadcast
+//                        broadcastDownloadFinished(downloadPath, -1);
+//                        showDownloadFinishedNotification(downloadPath, -1);
+//
+//                        // Mark task completed
+//                        taskCompleted();
+//                    });
+//            }).addOnFailureListener(exception -> {
+//                Log.w(TAG, "download:FAILURE", exception);
+//
+//                // Send failure broadcast
+//                broadcastDownloadFinished(downloadPath, -1);
+//                showDownloadFinishedNotification(downloadPath, -1);
+//
+//                // Mark task completed
+//                taskCompleted();
+//            });
 
-//                            while ((size = inputStream.read(buffer)) != -1) {
-//                                bytesDownloaded += size;
-//                                showProgressNotification(getString(R.string.progress_downloading),
-//                                        bytesDownloaded, totalBytes);
-//                            }
+            mStorageRef.child(downloadPath).getFile(file)
+                    .addOnSuccessListener(taskSnapshot -> {
+                        Log.d(TAG, "download:SUCCESS");
 
-                            // Close the stream at the end of the Task
-                            inputStream.close();
-                        })
-                .addOnSuccessListener(taskSnapshot -> {
-                    Log.d(TAG, "download:SUCCESS");
+                        // Send success broadcast with number of bytes downloaded
+                        broadcastDownloadFinished(downloadPath, taskSnapshot.getTotalByteCount());
+                        showDownloadFinishedNotification(downloadPath, (int) taskSnapshot.getTotalByteCount());
 
-                    // Send success broadcast with number of bytes downloaded
-                    broadcastDownloadFinished(downloadPath, taskSnapshot.getTotalByteCount());
-                    showDownloadFinishedNotification(downloadPath, (int) taskSnapshot.getTotalByteCount());
+                        // Log downloaded path
+                        Log.d(TAG, "download:SUCCESS:" + downloadPath);
 
-                    // Mark task completed
-                    taskCompleted();
-                })
-                .addOnFailureListener(exception -> {
-                    Log.w(TAG, "download:FAILURE", exception);
+                        // Mark task completed
+                        taskCompleted();
+                    })
+                    .addOnFailureListener(exception -> {
+                        Log.w(TAG, "download:FAILURE", exception);
 
-                    // Send failure broadcast
-                    broadcastDownloadFinished(downloadPath, -1);
-                    showDownloadFinishedNotification(downloadPath, -1);
+                        // Send failure broadcast
+                        broadcastDownloadFinished(downloadPath, -1);
+                        showDownloadFinishedNotification(downloadPath, -1);
 
-                    // Mark task completed
-                    taskCompleted();
-                });
+                        // Mark task completed
+                        taskCompleted();
+                    });
+
+        } catch (Exception e) {
+            Log.e("Download", e.getMessage());
+        }
+
+        // Download and get total bytes
+//        mStorageRef.child(downloadPath).getStream(
+//                        (taskSnapshot, inputStream) -> {
+//                            // Close the stream at the end of the Task
+//                            inputStream.close();
+//                        })
+//                .addOnSuccessListener(taskSnapshot -> {
+//                    Log.d(TAG, "download:SUCCESS");
+//
+//                    // Send success broadcast with number of bytes downloaded
+//                    broadcastDownloadFinished(downloadPath, taskSnapshot.getTotalByteCount());
+//                    showDownloadFinishedNotification(downloadPath, (int) taskSnapshot.getTotalByteCount());
+//
+//                    // Mark task completed
+//                    taskCompleted();
+//                })
+//                .addOnFailureListener(exception -> {
+//                    Log.w(TAG, "download:FAILURE", exception);
+//
+//                    // Send failure broadcast
+//                    broadcastDownloadFinished(downloadPath, -1);
+//                    showDownloadFinishedNotification(downloadPath, -1);
+//
+//                    // Mark task completed
+//                    taskCompleted();
+//                });
     }
 
     /**

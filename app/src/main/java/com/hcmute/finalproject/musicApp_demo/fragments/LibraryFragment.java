@@ -95,8 +95,8 @@ public class LibraryFragment extends Fragment implements helper {
     @Override
     public void onCallback(CustomAdapter customAdapter) {
         RecyclerView recyclerView = binding.recyclerView;
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager((SongActivity) getActivity());
-        if (customAdapter != null) {
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
+        if (customAdapter != null && customAdapter.getItemCount() != 0) {
             binding.emptyView.setVisibility(View.GONE);
             recyclerView.setVisibility(View.VISIBLE);
         }

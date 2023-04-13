@@ -67,9 +67,6 @@ public class SongActivity extends AppCompatActivity {
 //                    Toast.makeText(this, "Notifications permission granted", Toast.LENGTH_SHORT)
 //                            .show();
                 } else {
-                    Toast.makeText(this,
-                            "Can't post notifications without POST_NOTIFICATIONS permission",
-                            Toast.LENGTH_LONG).show();
                 }
             });
     @Override
@@ -287,6 +284,20 @@ public class SongActivity extends AppCompatActivity {
                 requestPermissionLauncher.launch(android.Manifest.permission.POST_NOTIFICATIONS);
             }
         }
+
+        // ask WRITE_EXTERNAL_STORAGE permission
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) !=
+                PackageManager.PERMISSION_GRANTED) {
+            // Your app can post notifications.
+            requestPermissionLauncher.launch(Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        }
+
+        // ask READ_EXTERNAL_STORAGE permission
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) !=
+                PackageManager.PERMISSION_GRANTED) {
+            requestPermissionLauncher.launch(Manifest.permission.READ_EXTERNAL_STORAGE);
+        }
+
     }
 
     private void signIn() {

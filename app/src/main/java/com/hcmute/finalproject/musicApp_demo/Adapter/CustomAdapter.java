@@ -54,16 +54,14 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
         Music song = songs.get(position);
-
-//        holder.song_id_txt.setText(String.valueOf(position + 1));
         holder.song_title_txt.setText(String.valueOf(song.getTitle()));
         holder.song_singer_txt.setText(String.valueOf(song.getArtist()));
-//        holder.song_stream_txt.setText(String.valueOf(song.getSongDuration()));
 
         holder.itemView.setOnClickListener(v -> {
             Intent intent = new Intent(context, PlayerStreamActivity.class);
             intent.putExtra("position", position);
             intent.putExtra("songs", (Serializable) songs);
+            intent.putExtra("song", song);
             context.startActivity(intent);
         });
     }

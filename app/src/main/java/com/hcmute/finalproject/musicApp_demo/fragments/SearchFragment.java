@@ -3,7 +3,6 @@ package com.hcmute.finalproject.musicApp_demo.fragments;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
@@ -13,18 +12,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.SearchView;
 
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.firestore.CollectionReference;
 import com.hcmute.finalproject.musicApp_demo.Adapter.CustomAdapter;
 import com.hcmute.finalproject.musicApp_demo.databinding.FragmentSearchBinding;
 import com.hcmute.finalproject.musicApp_demo.model.Music;
-import com.hcmute.finalproject.musicApp_demo.model.Song;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -69,10 +65,6 @@ public class SearchFragment extends Fragment {
         database = FirebaseDatabase.getInstance();
 //        ref = database.getReference("Songs");
         ref = database.getReference().child("Songs");
-
-        // collection ref
-        CollectionReference songsRef;
-
     }
 
     @Override
@@ -117,13 +109,18 @@ public class SearchFragment extends Fragment {
             public boolean onQueryTextChange(String newText) {
 //                Log.e("Search", "this worked: " + newText);
                 if (newText != null && !newText.isEmpty()) {
-//                    Log.e("Search", "onQueryTextChange: " + newText);
-//                    newText = newText.toLowerCase().trim();
 
-                    String searchUpper = newText.toUpperCase();
+                    // start searching when there's at least 3 characters
+                    if (newText.length() < 3) {
+                        return false;
+                    }
+
                     String searchLower = newText.toLowerCase();
 
-                    Query query = ref.orderByChild("lowerCaseTitle").startAt(searchUpper).endAt(searchLower + "\uf8ff");
+//                    Query query = ref.orderByChild("lowerCaseTitle").startAt(searchUpper).endAt(searchLower + "\uf8ff");
+
+                    // get all songs
+                    Query query = ref.orderByChild("lowerCaseTitle");
 
                     query.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
@@ -132,8 +129,16 @@ public class SearchFragment extends Fragment {
                             filteredSongs.clear();
                             for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                                 Music music = dataSnapshot.getValue(Music.class);
-                                filteredSongs.add(music);
+
+                                // check if the song title contains the search text
+                                assert music != null;
+                                if (music.getLowerCaseTitle().contains(searchLower)) {
+                                    filteredSongs.add(music);
+                                }
+
+//                                filteredSongs.add(music);
                             }
+
                             customAdapter.updateList(filteredSongs);
                         }
                         @Override
@@ -141,13 +146,9 @@ public class SearchFragment extends Fragment {
                             Log.e("Search", "onCancelled: " + error);
                         }
                     });
-
-
-
-
-            };
+            }
             return true;
-        };
+        }
     });
 
         return binding.getRoot();

@@ -11,7 +11,8 @@ import java.io.Serializable;
  */
 
 public class Music implements Serializable {
-    private String path;
+    private String path; // stream path
+    private String storagePath; // download path
     private String title;
     private String lowerCaseTitle;
     private int duration;
@@ -33,7 +34,7 @@ public class Music implements Serializable {
     }
 
     public Music(String path, String title, int duration, String artist, String album, String image) {
-        this.path = path;
+        this.path = path; // stream path
         this.title = title;
         this.lowerCaseTitle = title.toLowerCase();
         this.duration = duration;
@@ -63,4 +64,8 @@ public class Music implements Serializable {
     }
 
     public String getLowerCaseTitle() { return lowerCaseTitle; }
+
+//    public String getStoragePath() { return storagePath; }
+//
+//    public void setStoragePath(String storagePath) { this.storagePath = storagePath; }
 }

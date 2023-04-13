@@ -172,7 +172,11 @@ public class MyUploadService extends MyBaseTaskService {
                     Log.e("TAG", "onSuccess: " + uri.toString());
                     broadcastUploadFinished(uri, fileUri);
                     showUploadFinishedNotification(uri, fileUri);
-                    uploadDetailsToDatabase(songName, uri.toString(), imageUrl, artist, album, duration);
+
+//                    String path = uri.toString(); // later use this to stream the file
+//                    String storagePath = taskSnapshot.getMetadata().getPath(); // later use this to download the file
+                    String path = taskSnapshot.getMetadata().getPath(); // later use this to download the file
+                    uploadDetailsToDatabase(songName, path, imageUrl, artist, album, duration);
                     taskCompleted();
                     Log.e("onSuccess", "onSuccess: " + taskSnapshot.getMetadata().getReference().getDownloadUrl());
                 });
@@ -196,10 +200,11 @@ public class MyUploadService extends MyBaseTaskService {
 //        Music song = new Music(songUrl, songName, songDuration, artistName, albumName);
 
         Music song = new Music(songUrl, songName, songDuration, artistName, albumName, imageUrl);
+//        song.setStoragePath(storagePath);
 
         FirebaseDatabase.getInstance().getReference("Songs")
                 .push().setValue(song).addOnCompleteListener(task -> {
-                    Toast.makeText(getApplicationContext(), "Song Uploaded to Database", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(getApplicationContext(), "Song Uploaded to Database", Toast.LENGTH_SHORT).show();
                     taskCompleted();
                 }).addOnFailureListener(e -> {
             Log.i("database", "upload failed" + e.getMessage());
