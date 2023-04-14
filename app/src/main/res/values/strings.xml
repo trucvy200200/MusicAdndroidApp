@@ -9,4 +9,12 @@
     <string name="welcome_text">Sign up for free music on your phone, tablet, and computer.</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="desc">desc</string>
+    <string name="uploadBtn">Upload</string>
+    <string name="progress_uploading">Uploading...</string>
+    <string name="success">Success</string>
+    <string name="download_success">Download finished</string>
+    <string name="download_failure">Download failed</string>
+    <string name="upload_success">Upload finished</string>
+    <string name="upload_failure">Upload failed</string>
 </resources>

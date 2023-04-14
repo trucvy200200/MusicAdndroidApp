@@ -8,17 +8,20 @@ import static com.hcmute.finalproject.musicApp_demo.SongActivity.repeatBoolean;
 import static com.hcmute.finalproject.musicApp_demo.SongActivity.shuffleBoolean;
 import static com.hcmute.finalproject.musicApp_demo.SongActivity.songs;
 
+import android.Manifest;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.media.MediaMetadataRetriever;
 import android.media.MediaPlayer;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
@@ -32,7 +35,10 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.core.app.NotificationCompat;
+import androidx.core.content.ContextCompat;
 import androidx.palette.graphics.Palette;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -58,12 +64,20 @@ public class PlayerActivity extends AppCompatActivity implements  ActionPlaying,
     private Handler handler=new Handler();
     private Thread playThread,prevThread, nextThread;
     MusicService musicService;
-
+    private final ActivityResultLauncher<String> requestPermissionLauncher =
+            registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> {
+                if (isGranted) {
+//                    Toast.makeText(this, "Notifications permission granted", Toast.LENGTH_SHORT)
+//                            .show();
+                } else {
+                }
+            });
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setFullScreen();
         setContentView(R.layout.play_music);
+        askNotificationPermission();
 //        getSupportActionBar().hide();
         initViews();
         getIntentMethod();
@@ -444,6 +458,32 @@ public class PlayerActivity extends AppCompatActivity implements  ActionPlaying,
     public void onServiceDisconnected(ComponentName name) {
         musicService=null;
     }
+    private void askNotificationPermission() {
+        // This is only necessary for API level >= 33 (TIRAMISU)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.POST_NOTIFICATIONS) ==
+                    PackageManager.PERMISSION_GRANTED) {
+                // Your app can post notifications.
+                return;
+            } else{
+                // Directly ask for the permission
+                requestPermissionLauncher.launch(android.Manifest.permission.POST_NOTIFICATIONS);
+            }
+        }
 
+        // ask WRITE_EXTERNAL_STORAGE permission
+        if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.WRITE_EXTERNAL_STORAGE) !=
+                PackageManager.PERMISSION_GRANTED) {
+            // Your app can post notifications.
+            requestPermissionLauncher.launch(android.Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        }
+
+        // ask READ_EXTERNAL_STORAGE permission
+        if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.READ_EXTERNAL_STORAGE) !=
+                PackageManager.PERMISSION_GRANTED) {
+            requestPermissionLauncher.launch(Manifest.permission.READ_EXTERNAL_STORAGE);
+        }
+
+    }
 
 }

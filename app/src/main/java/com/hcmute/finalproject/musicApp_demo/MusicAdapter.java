@@ -41,7 +41,6 @@ public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.MyViewHolder
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         holder.file_name.setText(songs.get(position).getTitle());
-
         holder.artist.setText(songs.get(position).getArtist());
         try {
             byte[] image = getAlbumArt(songs.get(position).getPath());

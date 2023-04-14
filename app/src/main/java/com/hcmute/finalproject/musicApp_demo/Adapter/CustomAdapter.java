@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.database.Query;
 import com.hcmute.finalproject.musicApp_demo.PlayerActivity;
 import com.hcmute.finalproject.musicApp_demo.PlayerStreamActivity;
 import com.hcmute.finalproject.musicApp_demo.databinding.CustomRowBinding;
@@ -18,15 +19,27 @@ import com.hcmute.finalproject.musicApp_demo.model.Music;
 import com.hcmute.finalproject.musicApp_demo.model.Song;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHolder> {
     public Context context;
 
     MusicBinding binding;
+    private Query query;
     private List<Music> songs;
 
+    public CustomAdapter(Query query, List<Music> songs) {
+        this.songs = songs;
+        this.query = query;
+    }
+
     public CustomAdapter(List<Music> songs) {
+        this.songs = songs;
+    }
+
+    public CustomAdapter(Context context, List<Music> songs) {
+        this.context = context;
         this.songs = songs;
     }
 
@@ -41,16 +54,14 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
         Music song = songs.get(position);
-
-//        holder.song_id_txt.setText(String.valueOf(position + 1));
         holder.song_title_txt.setText(String.valueOf(song.getTitle()));
         holder.song_singer_txt.setText(String.valueOf(song.getArtist()));
-//        holder.song_stream_txt.setText(String.valueOf(song.getSongDuration()));
 
         holder.itemView.setOnClickListener(v -> {
             Intent intent = new Intent(context, PlayerStreamActivity.class);
             intent.putExtra("position", position);
             intent.putExtra("songs", (Serializable) songs);
+            intent.putExtra("song", song);
             context.startActivity(intent);
         });
     }
@@ -72,6 +83,11 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
             return songs.size();
         }
         return 0;
+    }
+
+    public void updateList(List<Music> newList) {
+        songs = newList;
+        notifyDataSetChanged();
     }
 
 }

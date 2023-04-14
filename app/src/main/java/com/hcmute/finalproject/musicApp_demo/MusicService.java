@@ -6,24 +6,30 @@ import static com.hcmute.finalproject.musicApp_demo.ApplicationClass.ACTION_PREV
 import static com.hcmute.finalproject.musicApp_demo.ApplicationClass.CHANNEL_ID_2;
 import static com.hcmute.finalproject.musicApp_demo.PlayerActivity.listSongs;
 
+import android.Manifest;
 import android.app.Notification;
 import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.media.MediaMetadataRetriever;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Binder;
+import android.os.Build;
 import android.os.IBinder;
 import android.support.v4.media.session.MediaSessionCompat;
 import android.util.Log;
 
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
+import androidx.core.content.ContextCompat;
 
 import com.hcmute.finalproject.musicApp_demo.model.Music;
 
@@ -203,16 +209,16 @@ public class MusicService extends Service implements MediaPlayer.OnCompletionLis
 
         Intent intent=new Intent(this,PlayerActivity.class);
         PendingIntent contentIntent=PendingIntent.getActivity(this,0,intent,0);
-       //PendingIntent contentIntent=PendingIntent.getActivity(this,0,intent,PendingIntent.FLAG_MUTABLE);
+//        PendingIntent contentIntent=PendingIntent.getActivity(this,0,intent,PendingIntent.FLAG_MUTABLE);
         Intent preIntent=new Intent(this,NotificationReceiver.class).setAction(ACTION_PREVIOUS);
         PendingIntent prevPending=PendingIntent.getBroadcast(this,0,preIntent,PendingIntent.FLAG_UPDATE_CURRENT);
-       // PendingIntent prevPending=PendingIntent.getBroadcast(this,0,preIntent,PendingIntent.FLAG_MUTABLE);
+//        PendingIntent prevPending=PendingIntent.getBroadcast(this,0,preIntent,PendingIntent.FLAG_MUTABLE);
         Intent pauseIntent=new Intent(this,NotificationReceiver.class).setAction(ACTION_PLAY);
         PendingIntent pausePending=PendingIntent.getBroadcast(this,0,pauseIntent,PendingIntent.FLAG_UPDATE_CURRENT);
 //        PendingIntent pausePending=PendingIntent.getBroadcast(this,0,pauseIntent,PendingIntent.FLAG_MUTABLE);
         Intent nextIntent=new Intent(this,NotificationReceiver.class).setAction(ACTION_NEXT);
-         PendingIntent nextPending=PendingIntent.getBroadcast(this,0,nextIntent,PendingIntent.FLAG_UPDATE_CURRENT);
-       // PendingIntent nextPending=PendingIntent.getBroadcast(this,0,nextIntent,PendingIntent.FLAG_MUTABLE);
+//        PendingIntent nextPending=PendingIntent.getBroadcast(this,0,nextIntent,PendingIntent.FLAG_UPDATE_CURRENT);
+        PendingIntent nextPending=PendingIntent.getBroadcast(this,0,nextIntent,PendingIntent.FLAG_MUTABLE);
         byte[] picture=null;
         try {
             picture= getAlbumArt(musicFiles.get(position).getPath());
@@ -237,12 +243,12 @@ public class MusicService extends Service implements MediaPlayer.OnCompletionLis
                 .addAction(R.drawable.ic_skippre,"Previous",prevPending)
                 .addAction(playPauseBtn,"Pause",pausePending)
                 .addAction(R.drawable.ic_skipnext,"Next",nextPending)
-                .setStyle(new androidx.media.app.NotificationCompat.MediaStyle()
-                        .setMediaSession(mediaSessionCompat.getSessionToken()))
+                .setStyle(new androidx.media.app.NotificationCompat.MediaStyle())
                 .setPriority(NotificationCompat.PRIORITY_HIGH)
                 .setOnlyAlertOnce(true)
                 .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
                 .build();
-        startForeground(1,notification);/////////
+        startForeground(2,notification);/////////
     }
+
 }
