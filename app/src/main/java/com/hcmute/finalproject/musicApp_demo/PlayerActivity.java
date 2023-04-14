@@ -45,6 +45,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.hcmute.finalproject.musicApp_demo.fragments.NowPlayingFragmentBottom;
 import com.hcmute.finalproject.musicApp_demo.model.Music;
 
 import java.io.IOException;
@@ -81,6 +82,7 @@ public class PlayerActivity extends AppCompatActivity implements  ActionPlaying,
 //        getSupportActionBar().hide();
         initViews();
         getIntentMethod();
+
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
@@ -106,6 +108,7 @@ public class PlayerActivity extends AppCompatActivity implements  ActionPlaying,
                     int mCurrentPosition=musicService.getCurrentPosition()/1000;
                     seekBar.setProgress(mCurrentPosition);
                     duration_played.setText(formattedTime(mCurrentPosition));
+
                 }
                 handler.postDelayed(this,1000);
             }
@@ -429,10 +432,10 @@ public class PlayerActivity extends AppCompatActivity implements  ActionPlaying,
         duration_total.setText(formattedTime(durationTotal));
         byte[] art=retriever.getEmbeddedPicture();
         if (art!=null){
-            Glide.with(this).asBitmap().load(art).into(cover_art);
+            Glide.with(getApplicationContext()).asBitmap().load(art).into(cover_art);
         }
         else{
-            Glide.with(this).asBitmap().load(R.drawable.ic_default).into(cover_art);
+            Glide.with(getApplicationContext()).asBitmap().load(R.drawable.ic_default).into(cover_art);
         }
     }
 

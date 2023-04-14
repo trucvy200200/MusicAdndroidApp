@@ -235,14 +235,12 @@ public class SongActivity extends AppCompatActivity {
         String path=preferences.getString(MUSIC_FILE,null);
         String artist =preferences.getString(ARTIST_NAME,null);
         String song_name =preferences.getString(SONG_NAME,null);
-
         if(path!=null)
         {
             SHOW_MINI_PLAYER=true;
             PATH_TO_FRAG=path;
             ARTIST_TO_FRAG=artist;
             SONG_NAME_TO_FRAG=song_name;
-
         }
         else {
             SHOW_MINI_PLAYER=false;

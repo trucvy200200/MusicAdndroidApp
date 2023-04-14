@@ -12,7 +12,8 @@ import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
+
+
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.media.MediaMetadataRetriever;
@@ -24,12 +25,9 @@ import android.os.IBinder;
 import android.support.v4.media.session.MediaSessionCompat;
 import android.util.Log;
 
-
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
-import androidx.core.content.ContextCompat;
+
 
 import com.hcmute.finalproject.musicApp_demo.model.Music;
 
@@ -123,7 +121,10 @@ public class MusicService extends Service implements MediaPlayer.OnCompletionLis
         mediaPlayer.start();
     }
     public boolean isPlaying() {
-        return mediaPlayer.isPlaying();
+        if (mediaPlayer!=null){
+            return mediaPlayer.isPlaying();
+        }
+        else return false;
     }
 
     void stop(){
@@ -147,9 +148,7 @@ public class MusicService extends Service implements MediaPlayer.OnCompletionLis
         uri=Uri.parse(musicFiles.get(position).getPath());
         SharedPreferences.Editor editor=getSharedPreferences(MUSIC_LAST_PLAYED,MODE_PRIVATE).edit();
         editor.putString(MUSIC_FILE,uri.toString());
-        //editor.apply();
         editor.putString(ARTIST_NAME,musicFiles.get(position).getArtist());
-        // editor.apply();
         editor.putString(SONG_NAME,musicFiles.get(position).getTitle());
         editor.apply();
         mediaPlayer=MediaPlayer.create(getBaseContext(),uri);
@@ -185,7 +184,7 @@ public class MusicService extends Service implements MediaPlayer.OnCompletionLis
             actionPlaying.playPauseBtnClick();
         }
     }
-    void previousBtnClicked()
+    public void previousBtnClicked()
     {
         if(actionPlaying!=null)
         {
@@ -222,7 +221,7 @@ public class MusicService extends Service implements MediaPlayer.OnCompletionLis
         byte[] picture=null;
         try {
             picture= getAlbumArt(musicFiles.get(position).getPath());
-        } catch (IOException e) {
+        }catch (IOException ignored) {
 
         }
         Bitmap thumb=null;
