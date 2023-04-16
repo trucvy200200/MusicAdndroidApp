@@ -2,6 +2,7 @@ package com.hcmute.finalproject.musicApp_demo.Service;
 
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.net.Uri;
 import android.os.Environment;
 import android.os.IBinder;
 import android.util.Log;
@@ -138,6 +139,11 @@ public class MyDownloadService extends MyBaseTaskService {
 
                         // Log downloaded path
                         Log.d(TAG, "download:SUCCESS:" + downloadPath);
+
+                        // update the SCAN_FILE
+                        Intent intent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
+                        intent.setData(Uri.fromFile(file));
+                        sendBroadcast(intent);
 
                         // Mark task completed
                         taskCompleted();

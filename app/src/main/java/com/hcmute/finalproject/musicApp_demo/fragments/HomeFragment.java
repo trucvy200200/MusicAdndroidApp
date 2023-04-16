@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,9 @@ import android.widget.TextView;
 import com.hcmute.finalproject.musicApp_demo.MusicAdapter;
 import com.hcmute.finalproject.musicApp_demo.R;
 import com.hcmute.finalproject.musicApp_demo.databinding.MusicBinding;
+import com.hcmute.finalproject.musicApp_demo.model.Music;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -84,7 +88,18 @@ public class HomeFragment extends Fragment {
            recycleView.setAdapter(musicAdapter);
            recycleView.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL,
                    false));
+           Log.e("HomeFragment", "onCreateView: "+songs.size());
        }
        return mView;
     }
+
+    public void update(ArrayList<Music> songs) {
+        if (!(songs.size()<1) && musicAdapter!=null)
+        {
+            musicAdapter.setData(songs);
+            musicAdapter.notifyDataSetChanged();
+
+        }
+    }
+
 }

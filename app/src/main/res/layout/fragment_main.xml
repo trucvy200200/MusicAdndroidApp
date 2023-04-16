@@ -18,6 +18,7 @@
             android:layout_height="match_parent"/>
     </FrameLayout>
     <fragment
+        android:id="@+id/now_playing_fragment_bottom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:name="com.hcmute.finalproject.musicApp_demo.fragments.NowPlayingFragmentBottom"

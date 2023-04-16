@@ -26,6 +26,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.viewpager2.widget.ViewPager2;
 
@@ -38,6 +39,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.hcmute.finalproject.musicApp_demo.Service.MyDownloadService;
 import com.hcmute.finalproject.musicApp_demo.Service.MyUploadService;
 import com.hcmute.finalproject.musicApp_demo.databinding.FragmentMainBinding;
+import com.hcmute.finalproject.musicApp_demo.fragments.HomeFragment;
 import com.hcmute.finalproject.musicApp_demo.model.Music;
 
 import java.util.ArrayList;
@@ -136,6 +138,34 @@ public class SongActivity extends AppCompatActivity {
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
+//                if (tab.getPosition()==0)
+//                {
+//                    // re-render the fragment
+////                    viewPagerAdapter.notifyDataSetChanged();
+//                    getMusic();
+////                    long tabId = tab.getId();
+//                    long fragmentId = viewPagerAdapter.getItemId(0);
+////                    HomeFragment home = (HomeFragment) viewPagerAdapter.ins(0);
+//                    HomeFragment home = (HomeFragment) getSupportFragmentManager().findFragmentByTag("");
+//                    home.update(songs);
+////                    home.getChildFragmentManager().beginTransaction().detach(home).attach(home).commit();
+//
+//                }
+                if (tab.getPosition()==0)
+                {
+                    // the selected tab position and its fragment
+                    int position = tab.getPosition();
+
+                    // get the fragment
+                    HomeFragment fragment = (HomeFragment) getSupportFragmentManager().findFragmentByTag("f" + position);
+                    if (fragment != null) {
+                        // re-render the fragment
+                        getMusic();
+                        fragment.update(songs);
+                    }
+                }
+
+
                 viewPager2.setCurrentItem(tab.getPosition());
             }
 
@@ -202,7 +232,7 @@ public class SongActivity extends AppCompatActivity {
                     Music song = new Music(path, title, duration, artist, album);
                     songs.add(song);
                 } while (songCursor.moveToNext());
-                Toast.makeText(getApplicationContext(), "Number songs: " + songs.size(), Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getApplicationContext(), "Number songs: " + songs.size(), Toast.LENGTH_SHORT).show();
             }
         }
         catch (Exception ignored){

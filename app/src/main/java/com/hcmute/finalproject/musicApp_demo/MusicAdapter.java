@@ -38,6 +38,11 @@ public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.MyViewHolder
         return new MyViewHolder(view);
     }
 
+    public void setData(ArrayList<Music> songs){
+        this.songs=songs;
+        notifyDataSetChanged();
+    }
+
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         holder.file_name.setText(songs.get(position).getTitle());

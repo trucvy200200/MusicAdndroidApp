@@ -18,6 +18,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import android.os.IBinder;
 import android.view.LayoutInflater;
@@ -54,6 +55,7 @@ public class NowPlayingFragmentBottom extends Fragment implements ServiceConnect
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
         view =inflater.inflate(R.layout.fragment_now_playing_bottom,container,false);
         artist=view.findViewById(R.id.song_artist_miniPlayer);
         songName=view.findViewById(R.id.song_name_miniPlayer);
@@ -61,6 +63,13 @@ public class NowPlayingFragmentBottom extends Fragment implements ServiceConnect
         nextBtn=view.findViewById(R.id.skip_next_bottom);
         playPauseBtn=view.findViewById(R.id.play_pause_miniPlayer);
         prevBtn=view.findViewById(R.id.skip_prev_bottom);
+
+        // hide bottom fragment
+        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+        Fragment bottom = fragmentManager.findFragmentById(R.id.now_playing_fragment_bottom);
+        fragmentManager.beginTransaction().hide(bottom).commit();
+//        bottom.getView().setVisibility(View.GONE);
+
         nextBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -250,11 +259,17 @@ public class NowPlayingFragmentBottom extends Fragment implements ServiceConnect
     }
 
     private  byte[]getAlbumArt(String uri) {
-        MediaMetadataRetriever retriever=new MediaMetadataRetriever();
-        retriever.setDataSource(uri);
-        byte[] art=retriever.getEmbeddedPicture();
+        try {
+            MediaMetadataRetriever retriever=new MediaMetadataRetriever();
+            retriever.setDataSource(uri);
+            byte[] art=retriever.getEmbeddedPicture();
 
-        return art;
+            return art;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     @Override
